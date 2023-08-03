@@ -32,10 +32,13 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
+.app {
+  display: flex;
+  flex-flow: column nowrap;
 
-.read-the-docs {
-  color: #888;
+  &__title {
+  }
+
+  &__logotypes {
+  }
 }
