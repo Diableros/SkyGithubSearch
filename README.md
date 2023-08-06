@@ -41,7 +41,9 @@ pnpm dev
 ### - TypeScript v5
 ### - Tanstack Query v4
 ### - Ky v0.33
-### - Vite v4.4
+### - Vite v4
+### - Emotion v11
+
 ### - React: Context + useReducer (as state-manager)
   
 ## Назначение папок проекта.  

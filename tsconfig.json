@@ -28,6 +28,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
 
     /* Linting */
     "strict": true,
@@ -37,10 +38,10 @@
     "forceConsistentCasingInFileNames": false
   },
   "include": [
-    "src//*.ts",
+    "src/**/*.ts",
     "src/*.d.ts",
-    "src//*.d.ts",
-    "src//*.tsx",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
     "src/__test__//*.(test|spec).(ts|tsx)",
     "*.config.ts",
     "./src//*",
