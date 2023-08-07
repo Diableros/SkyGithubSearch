@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/styles/style'
+import { buttoGeneral } from '@/styles/general.style'
 
 export const SearchForm = styled.form`
-  background-color: rgb(13, 17, 23);
-  border: 1px solid rgb(48, 54, 61);
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
   padding: 1rem;
   border-radius: 0.4rem;
 
@@ -13,22 +13,22 @@ export const SearchForm = styled.form`
     padding: 0.7rem;
     margin-bottom: 1rem;
 
-    background-color: rgb(1, 4, 9);
+    background-color: ${({ theme }) => theme.colors.backgroundMain};
     border-radius: 0.5rem;
     border: 1px solid #ffffff30;
 
     color: inherit;
 
     &::placeholder {
-      color: rgba(97, 104, 115);
+      color: ${({ theme }) => theme.colors.textPrimary40};
     }
 
     &:not(:placeholder-shown) {
-      outline: 1px solid rgb(47, 129, 247);
+      outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
     }
 
     &:focus {
-      outline: 2px solid rgb(47, 129, 247);
+      outline: 2px solid ${({ theme }) => theme.colors.inputOutline};
     }
   }
 `
