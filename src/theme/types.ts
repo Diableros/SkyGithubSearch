@@ -13,6 +13,7 @@ export type AppTheme = {
 
     backgroundMain: string
     backgroundSecondary: string
+    backgroundThird: string
 
     inputOutline: string
   }

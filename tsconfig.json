@@ -46,6 +46,6 @@
     "*.config.ts",
     "./src//*",
     "./playwright//*"
-  ],
+, "src/components/SearchResult/components/ResultList"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

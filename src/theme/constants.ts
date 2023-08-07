@@ -8,6 +8,7 @@ export const THEME: AppTheme = {
 
     backgroundMain: 'rgb(1, 4, 9)',
     backgroundSecondary: 'rgb(13, 17, 23)',
+    backgroundThird: 'rgb(22, 27, 34)',
 
     buttonBackgroundRegular: 'rgb(33, 38, 45)',
     buttonBackgroundHover: 'rgb(48, 54, 61)',
@@ -16,7 +17,7 @@ export const THEME: AppTheme = {
     strokeHover: 'rgb(139, 148, 158)',
     strokeActive: 'rgb(33, 38, 45)',
 
-    inputOutline: 'rgb(47, 129, 247)'
+    inputOutline: 'rgb(47, 129, 247)',
   },
   border: {
     radius: '6px',
