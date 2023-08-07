@@ -1,44 +1,44 @@
 import * as React from 'react'
 
+import UiIcon from '@/components/UiIcon'
+
 import { SortBy } from './enums'
 
 import * as S from './SortByRepos.style'
 
-import arrowDown from '@/assets/icons/arrowDown.svg'
-
 const SortByRepos = () => {
   const [sortBy, setSortBy] = React.useState<SortBy>(SortBy.Default)
-  const [isShowSelect, setIsShowSelect] = React.useState<boolean>(false)
+  const [isShowDroplist, setIsShowDroplist] = React.useState<boolean>(false)
 
   const handleClickSelectItem = (clickedItem: SortBy) => {
     setSortBy(clickedItem)
-    setIsShowSelect(false)
+    setIsShowDroplist(false)
   }
 
-  const selectContent = (
-    <S.DropList>
+  const droplistContent = (
+    <S.Droplist onMouseLeave={() => setIsShowDroplist(false)}>
       {Object.values(SortBy).map(selectItem =>
         selectItem !== sortBy ? (
           <div
             key={selectItem}
             onClick={() => handleClickSelectItem(selectItem)}
           >
-            {selectItem}
+            <span>{selectItem}</span>
           </div>
         ) : null,
       )}
-    </S.DropList>
+    </S.Droplist>
   )
 
   return (
     <S.SortBox>
-      <span>Sort result by repos number:</span>
+      <span>Sort result by repos quantity:</span>
       <S.Select>
         <span>{sortBy}</span>
-        <button type='button' onClick={() => setIsShowSelect(prev => !prev)}>
-          <img src={arrowDown} width='16px' />
+        <button type='button' onClick={() => setIsShowDroplist(prev => !prev)}>
+          <UiIcon name='arrowDown' width='1rem' />
         </button>
-        {isShowSelect ? selectContent : null}
+        {isShowDroplist ? droplistContent : null}
       </S.Select>
     </S.SortBox>
   )

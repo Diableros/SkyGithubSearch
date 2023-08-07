@@ -1,11 +1,15 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/styles/style'
+import { buttoGeneral } from '@/styles/general.style'
 
 export const SortBox = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  & > span {
+    color: ${({theme})=> theme.colors.textPrimary80};
+  }
 `
 
 export const Select = styled.div`
@@ -21,7 +25,7 @@ export const Select = styled.div`
 
     &:hover,
     &:active {
-      border: 1px solid rgb(54, 59, 66);
+      border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
       cursor: default;
     }
   }
@@ -35,7 +39,7 @@ export const Select = styled.div`
   }
 `
 
-export const DropList = styled.div`
+export const Droplist = styled.div`
   position: absolute;
   width: 100%;
 

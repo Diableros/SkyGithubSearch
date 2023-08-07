@@ -1,5 +1,5 @@
-import EmotionThemeProvider from './themeProvider'
+import { ThemeProvider } from './themeProvider'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <EmotionThemeProvider>{children}</EmotionThemeProvider>
+  return <ThemeProvider>{children}</ThemeProvider>
 }
