@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { buttoGeneral } from '@/styles/style'
 
 export const SearchForm = styled.form`
-  background-color: rgb(13, 17, 23);
+  background-color: ${({ theme }) => theme.colors.bgSecondary};
   border: 1px solid rgb(48, 54, 61);
   padding: 1rem;
   border-radius: 0.4rem;

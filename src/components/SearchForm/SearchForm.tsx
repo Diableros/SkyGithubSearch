@@ -38,7 +38,7 @@ const SearchForm = () => {
         value={searchText}
         required
         pattern={TEXT.INPUT_PATTERN_REGEXP}
-        title={TEXT.IVALID_VALUE_MSG}
+        title={TEXT.INVALID_VALUE_MSG}
         onChange={handleOnChangeInput}
         ref={inputRef}
       />
