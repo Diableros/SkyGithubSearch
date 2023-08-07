@@ -19,7 +19,10 @@ body {
   color: rgb(230, 237, 243);
 
   & > div {
-    max-width: 490px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    min-width: 575px;
     margin: 0 auto;
     padding: 3rem 0 0;
     text-align: center;

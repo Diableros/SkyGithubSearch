@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import { buttoGeneral } from '@/styles/style'
 
 export const SearchForm = styled.form`
-  width: 100%;
   background-color: rgb(13, 17, 23);
   border: 1px solid rgb(48, 54, 61);
   padding: 1rem;

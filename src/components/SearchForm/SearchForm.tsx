@@ -20,7 +20,7 @@ const SearchForm = () => {
 
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
-    console.log(`Search text: ${searchText}`)
+    console.log(`event =>`, event)
   }
 
   React.useEffect(() => {
