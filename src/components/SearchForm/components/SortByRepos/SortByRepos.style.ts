@@ -8,7 +8,7 @@ export const SortBox = styled.div`
   gap: 1rem;
 
   & > span {
-    color: ${({theme})=> theme.colors.textPrimary80};
+    color: ${({ theme }) => theme.colors.textPrimary80};
   }
 `
 
@@ -26,6 +26,7 @@ export const Select = styled.div`
     &:hover,
     &:active {
       border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
+      background-color: ${({ theme }) => theme.colors.buttonBackgroundRegular};
       cursor: default;
     }
   }

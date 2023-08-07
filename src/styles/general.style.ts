@@ -13,7 +13,7 @@ export const buttoGeneral: CssThemed = ({ theme }) => css`
   font-family: inherit;
   color: ${theme.colors.textPrimary80};
 
-  background-color: ${theme.colors.buttonBackground};
+  background-color: ${theme.colors.buttonBackgroundRegular};
   border: 1px solid ${theme.colors.strokeRegular};
   border-radius: ${theme.border.radius};
 
@@ -23,6 +23,7 @@ export const buttoGeneral: CssThemed = ({ theme }) => css`
 
   &:hover {
     border: 1px solid ${theme.colors.strokeHover};
+    background-color: ${theme.colors.buttonBackgroundHover};
   }
 
   &:active {
