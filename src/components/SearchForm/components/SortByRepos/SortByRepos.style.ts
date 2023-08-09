@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/components/UiKit/UiButton-like/general.style'
+import { buttonGeneral } from '@/components/UiKit/UiButton-like/buttonLikeGeneral.style'
 
 export const SortBox = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ export const Select = styled.div`
   display: flex;
 
   & > span {
-    ${buttoGeneral}
+    ${buttonGeneral}
 
     width: 7.5rem;
     border-top-right-radius: 0;
@@ -48,7 +48,7 @@ export const Droplist = styled.div`
   left: 0rem;
 
   & > div {
-    ${buttoGeneral}
+    ${buttonGeneral}
     width: 100%;
 
     &:first-of-type {

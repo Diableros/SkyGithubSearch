@@ -1,12 +1,12 @@
 import { css, CssThemed } from '@emotion/react'
 
-export const buttoGeneral: CssThemed = ({ theme }) => css`
+export const buttonGeneral: CssThemed = ({ theme }) => css`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 
-  width: 7rem;
-  padding: 0.2rem 0 0.2rem;
+  padding: 0.2rem 1.2rem 0.2rem;
 
   font-size: 1rem;
   font-weight: 500;

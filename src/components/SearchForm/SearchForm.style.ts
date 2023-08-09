@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/components/UiKit/UiButton-like/general.style'
+import { buttonGeneral } from '@/components/UiKit/UiButton-like/buttonLikeGeneral.style'
 
 export const SearchForm = styled.form`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
@@ -39,7 +39,7 @@ export const ButtonsBox = styled.div`
   justify-content: space-between;
 
   & button {
-    ${buttoGeneral}
+    ${buttonGeneral}
 
     & div {
       display: flex;

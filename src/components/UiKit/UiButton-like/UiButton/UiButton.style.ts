@@ -1,3 +1,7 @@
 import styled from '@emotion/styled'
 
-export const Button = styled.button``
+import { buttonGeneral } from '../buttonLikeGeneral.style'
+
+export const Button = styled.button`
+  ${buttonGeneral}
+`

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import SortByRepos from './components/SortByRepos'
+import UiButton from '../UiKit/UiButton-like/UiButton'
 import UiIcon from '../UiKit/UiIcon'
 
 import * as TEXT from './constants'
@@ -42,10 +43,11 @@ const SearchForm = () => {
       />
       <S.ButtonsBox>
         <SortByRepos />
-        <button type='submit'>
-          <UiIcon name='search' width='18px' />
-          <span>{TEXT.SEARCH_BUTTON_TITLE}</span>
-        </button>
+        <UiButton
+          title={TEXT.SEARCH_BUTTON_TITLE}
+          type='submit'
+          icon={<UiIcon name='search' width='18' />}
+        />
       </S.ButtonsBox>
     </S.SearchForm>
   )

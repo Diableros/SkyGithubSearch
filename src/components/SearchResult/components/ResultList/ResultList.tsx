@@ -1,3 +1,5 @@
+import UiButton from '@/components/UiKit/UiButton-like/UiButton'
+
 import { User } from '@/api/types'
 
 import * as S from './ResultList.style'
@@ -15,7 +17,10 @@ const ResultList = ({ resultData }: PropsType) => {
             <S.UserAvatar src={avatar_url} alt={login} />
             <span>{login}</span>
           </S.UserInfo>
-          <span>Details</span>
+          <UiButton
+            title='Details'
+            onClick={() => console.log(`Show details ${login}`)}
+          />
         </S.SearchListItem>
       ))}
     </>
