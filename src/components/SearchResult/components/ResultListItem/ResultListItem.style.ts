@@ -12,6 +12,7 @@ export const ResultListItem = styled.div`
   border-radius: ${({ theme }) => theme.border.radius};
 `
 export const UserInfo = styled.div`
+  position: relative;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -19,6 +20,8 @@ export const UserInfo = styled.div`
   font-size: 1.2rem;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.textPrimary};
+
+  cursor: pointer;
 `
 
 export const UserAvatar = styled.img`
@@ -26,4 +29,13 @@ export const UserAvatar = styled.img`
   width: 3rem;
 
   border-radius: 50%;
+`
+
+export const Type = styled.span`
+  position: absolute;
+  top: -4px;
+  left: 4rem;
+  font-size: 0.7rem;
+  color: ${({ theme }) => theme.colors.textPrimary40};
+  font-weight: 100;
 `
