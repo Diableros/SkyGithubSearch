@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import UiIcon from '@/components/UiIcon'
+import UiIcon from '@/components/UiKit/UiIcon'
 
 import { SortBy } from './enums'
 

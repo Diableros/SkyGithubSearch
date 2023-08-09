@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/styles/general.style'
+import { buttoGeneral } from '@/components/UiKit/UiButton-like/general.style'
 
 export const SortBox = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import SortByRepos from './components/SortByRepos'
-import UiIcon from '../UiIcon'
+import UiIcon from '../UiKit/UiIcon'
 
 import * as TEXT from './constants'
 
@@ -11,24 +11,24 @@ const SearchForm = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [searchText, setSearchText] = React.useState('')
 
-  const handleOnChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target
-
-    setSearchText(value)
+  const handleOnChangeInput = () => {
+    const { value: inputCurrentValue } = inputRef.current
+    setSearchText(inputCurrentValue)
   }
 
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
-    console.log(`event =>`, event)
+    console.log(searchText)
   }
 
   React.useEffect(() => {
-    inputRef.current?.focus()
+    inputRef.current.focus()
   }, [])
 
   return (
     <S.SearchForm onSubmit={handleOnSumbit}>
       <input
+        ref={inputRef}
         placeholder={TEXT.INPUT_PLACEHOLDER}
         type='text'
         minLength={1}
@@ -39,7 +39,6 @@ const SearchForm = () => {
         pattern={TEXT.INPUT_PATTERN_REGEXP}
         title={TEXT.INVALID_VALUE_MSG}
         onChange={handleOnChangeInput}
-        ref={inputRef}
       />
       <S.ButtonsBox>
         <SortByRepos />

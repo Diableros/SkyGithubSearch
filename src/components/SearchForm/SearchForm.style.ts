@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { buttoGeneral } from '@/styles/general.style'
+import { buttoGeneral } from '@/components/UiKit/UiButton-like/general.style'
 
 export const SearchForm = styled.form`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};

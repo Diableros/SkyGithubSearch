@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { User } from '@/api/types'
 
 import * as S from './ResultList.style'
