@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-import { buttonGeneral } from '@/components/UiKit/UiButton-like/buttonLikeGeneral.style'
-
 export const SearchForm = styled.form`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
@@ -34,23 +32,6 @@ export const SearchForm = styled.form`
 `
 
 export const ButtonsBox = styled.div`
-  color: #fff;
   display: flex;
   justify-content: space-between;
-
-  & button {
-    ${buttonGeneral}
-
-    & div {
-      display: flex;
-      align-items: center;
-      width: 1.5rem;
-      position: relative;
-
-      & > img {
-        position: absolute;
-        top: 0.2rem;
-      }
-    }
-  }
 `
