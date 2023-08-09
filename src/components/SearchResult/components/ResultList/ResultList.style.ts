@@ -14,12 +14,11 @@ export const SearchListItem = styled.div`
 export const UserInfo = styled.div`
   display: flex;
   gap: 1rem;
-	align-items: center;
-	
-	font-size: 1.2rem;
-	font-weight: 500;
-	color: ${({theme}) => theme.colors.textPrimary};
+  align-items: center;
 
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.textPrimary};
 `
 
 export const UserAvatar = styled.img`
