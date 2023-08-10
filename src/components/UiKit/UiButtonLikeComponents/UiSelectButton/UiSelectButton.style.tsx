@@ -37,7 +37,9 @@ export const SlectDropList = styled.div`
   width: 100%;
 
   top: 2.2rem;
-  left: 0rem;
+  left: 0;
+
+  z-index: 99;
 
   & > div {
     ${buttonGeneral}

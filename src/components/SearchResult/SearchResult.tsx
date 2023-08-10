@@ -1,3 +1,4 @@
+import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
 
 // import UiIcon from '../UiIcon'
@@ -16,7 +17,13 @@ const SearchResult = () => {
   //   </S.CoverContent>
   // )
 
-  const searchSuccessContent = <ResultList resultData={users} />
+  const searchSuccessContent = (
+    <>
+      <Pagination />
+      <ResultList resultData={users} />
+      <Pagination />
+    </>
+  )
 
   const searchFailContent = <p>Not found</p>
 

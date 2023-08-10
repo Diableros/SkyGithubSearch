@@ -1,10 +1,10 @@
-import { SelectItem } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
+import { SelectOptions } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
-export const sortBy: SelectItem[] = [
+export const sortByOptions: SelectOptions = [
   {
-    option: 'Default',
+    title: 'Default',
     value: null,
   },
-  { option: 'Ascending', value: 'asc' },
-  { option: 'Descending', value: 'desc' },
+  { title: 'Ascending', value: 'asc' },
+  { title: 'Descending', value: 'desc' },
 ]

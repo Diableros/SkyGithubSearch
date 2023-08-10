@@ -2,35 +2,35 @@ import * as React from 'react'
 
 import UiIcon from '@/components/UiKit/UiIcon'
 
-import { SelectItem } from './types'
+import { SelectOption, SelectOptions } from './types'
 
 import * as S from './UiSelectButton.style'
 
 type PropsType = {
-  selectItems: SelectItem[]
+  selectOptions: SelectOptions
 }
 
-const UiSelectButton = ({ selectItems }: PropsType) => {
-  const [defaultItem] = selectItems
+const UiSelectButton = ({ selectOptions }: PropsType) => {
+  const [defaultItem] = selectOptions
 
-  const [selectedItem, setSelectedItem] =
-    React.useState<SelectItem>(defaultItem)
+  const [selectedOption, setSelectedOption] =
+    React.useState<SelectOption>(defaultItem)
   const [isShowDroplist, setIsShowDroplist] = React.useState<boolean>(false)
 
-  const handleClickSelectItem = (clickedItem: SelectItem) => {
-    setSelectedItem(clickedItem)
+  const handleClickSelectItem = (clickedItem: SelectOption) => {
+    setSelectedOption(clickedItem)
     setIsShowDroplist(false)
   }
 
   const droplistContent = (
     <S.SlectDropList onMouseLeave={() => setIsShowDroplist(false)}>
-      {selectItems.map(selectItem =>
-        selectItem !== selectedItem ? (
+      {selectOptions.map(selectOption =>
+        selectOption !== selectedOption ? (
           <div
-            key={selectItem.option}
-            onClick={() => handleClickSelectItem(selectItem)}
+            key={selectOption.title}
+            onClick={() => handleClickSelectItem(selectOption)}
           >
-            <span>{selectItem.option}</span>
+            <span>{selectOption.title}</span>
           </div>
         ) : null,
       )}
@@ -39,7 +39,7 @@ const UiSelectButton = ({ selectItems }: PropsType) => {
 
   return (
     <S.SelectBox>
-      <S.SelectedValue>{selectedItem.option}</S.SelectedValue>
+      <S.SelectedValue>{selectedOption.title}</S.SelectedValue>
       <S.SelectDropButton
         type='button'
         onClick={() => setIsShowDroplist(prev => !prev)}
