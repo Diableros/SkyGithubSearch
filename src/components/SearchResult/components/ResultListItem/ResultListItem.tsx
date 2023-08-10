@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import UiButton from '@/components/UiKit/UiButton-like/UiButton'
+import UiButton from '@/components/UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '@/components/UiKit/UiIcon'
 import UiTooltip from '@/components/UiKit/UiTooltip'
 

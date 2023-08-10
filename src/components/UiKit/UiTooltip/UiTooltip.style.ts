@@ -13,7 +13,7 @@ export const Tooltip = styled.div<TooltipProps>`
   padding: 5px 10px;
 
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-  opacity: 0.45;
+  opacity: 0.6;
   border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
   border-radius: ${({ theme }) => theme.border.radius};
 `

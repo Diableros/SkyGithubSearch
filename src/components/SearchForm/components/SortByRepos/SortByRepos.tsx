@@ -1,4 +1,4 @@
-import UiSelectButton from '@/components/UiKit/UiButton-like/UiSelectButton'
+import UiSelectButton from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton'
 
 import { sortBy } from './constants'
 

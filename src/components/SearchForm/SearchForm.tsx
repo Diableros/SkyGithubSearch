@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import SortByRepos from './components/SortByRepos'
-import UiButton from '../UiKit/UiButton-like/UiButton'
+import UiButton from '../UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '../UiKit/UiIcon'
 
 import * as TEXT from './constants'

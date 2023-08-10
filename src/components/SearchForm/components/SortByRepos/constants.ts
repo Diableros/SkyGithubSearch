@@ -1,4 +1,4 @@
-import { SelectItem } from '@/components/UiKit/UiButton-like/UiSelectButton/types'
+import { SelectItem } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
 export const sortBy: SelectItem[] = [
   {
