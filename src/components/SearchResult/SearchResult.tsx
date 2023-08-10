@@ -1,5 +1,6 @@
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
+import { Position } from '../UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
 
 // import UiIcon from '../UiIcon'
 import * as S from './SearchResult.style'
@@ -8,7 +9,7 @@ import { mockData } from './mockData.ts'
 
 const SearchResult = () => {
   const error = ''
-  const { items: users, total_count: resultCount } = mockData
+  const { items: users, total_count: resultTotalCount } = mockData
 
   // const beforeSearchContent = (
   //   <S.CoverContent>
@@ -19,15 +20,18 @@ const SearchResult = () => {
 
   const searchSuccessContent = (
     <>
-      <Pagination />
+      <Pagination resultTotalCount={resultTotalCount} position={Position.Top} />
       <ResultList resultData={users} />
-      <Pagination />
+      <Pagination
+        resultTotalCount={resultTotalCount}
+        position={Position.Bottom}
+      />
     </>
   )
 
   const searchFailContent = <p>Not found</p>
 
-  const searchResultContent = resultCount
+  const searchResultContent = resultTotalCount
     ? searchSuccessContent
     : searchFailContent
 

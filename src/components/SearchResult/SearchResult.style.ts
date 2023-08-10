@@ -10,6 +10,7 @@ export const SearchResultWrapper = styled.main`
   flex-basis: 575px;
 
   padding: 1rem;
+
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
   border-radius: ${({ theme }) => theme.border.radius};
