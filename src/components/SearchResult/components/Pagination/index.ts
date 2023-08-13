@@ -1,3 +1,3 @@
-import UiPagination from './UiPagination'
+import Pagination from './Pagination'
 
-export default UiPagination
+export default Pagination

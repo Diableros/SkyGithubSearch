@@ -1,5 +1,8 @@
 import { SelectOptions } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
+import { QueryParams } from './types'
+import { QueryParamsFields } from './enums'
+
 export const paginationSelectOptions: SelectOptions = [
   {
     title: '10',
@@ -18,3 +21,8 @@ export const paginationSelectOptions: SelectOptions = [
     value: '100',
   },
 ]
+
+export const paginationInitOptions: QueryParams = {
+  [QueryParamsFields.CurrentPage]: '1',
+  [QueryParamsFields.PageSize]: paginationSelectOptions[0].value,
+}

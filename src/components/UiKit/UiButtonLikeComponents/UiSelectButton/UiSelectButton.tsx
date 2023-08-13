@@ -8,26 +8,32 @@ import { Position } from './enums'
 import * as S from './UiSelectButton.style'
 
 type PropsType = {
+  value: SelectOption
+  onChange: (value: SelectOption) => void
   selectOptions: SelectOptions
   position?: Position
   width?: string
 }
 
 const UiSelectButton = ({
+  value,
+  onChange,
   selectOptions,
   position = Position.Top,
-  width = '5rem'
+  width = '5rem',
 }: PropsType) => {
   const dropListRef = React.useRef<HTMLDivElement | null>(null)
 
   const [defaultItem] = selectOptions
 
-  const [selectedOption, setSelectedOption] =
-    React.useState<SelectOption>(defaultItem)
+  const [selectedOption, setSelectedOption] = React.useState<SelectOption>(
+    value || defaultItem,
+  )
   const [isShowDroplist, setIsShowDroplist] = React.useState<boolean>(false)
 
   const handleClickSelectItem = (clickedItem: SelectOption) => {
     setSelectedOption(clickedItem)
+    onChange(clickedItem)
     setIsShowDroplist(false)
   }
 
