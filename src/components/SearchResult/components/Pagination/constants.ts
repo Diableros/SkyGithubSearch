@@ -1,7 +1,8 @@
 import { SelectOptions } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
+import { QueryParamsFields } from '../../../../hooks/useQueryParams/enums'
+
 import { QueryParams } from './types'
-import { QueryParamsFields } from './enums'
 
 export const paginationSelectOptions: SelectOptions = [
   {

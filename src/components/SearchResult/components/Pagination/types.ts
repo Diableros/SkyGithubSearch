@@ -1,4 +1,4 @@
-import { QueryParamsFields } from './enums'
+import { QueryParamsFields } from '../../../../hooks/useQueryParams/enums'
 
 export type QueryParams = {
   [QueryParamsFields.Search]?: string

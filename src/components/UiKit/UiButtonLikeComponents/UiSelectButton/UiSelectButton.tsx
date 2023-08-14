@@ -8,15 +8,15 @@ import { Position } from './enums'
 import * as S from './UiSelectButton.style'
 
 type PropsType = {
-  value: SelectOption
   onChange: (value: SelectOption) => void
   selectOptions: SelectOptions
+  selectedValue?: SelectOption
   position?: Position
   width?: string
 }
 
 const UiSelectButton = ({
-  value,
+  selectedValue,
   onChange,
   selectOptions,
   position = Position.Top,
@@ -27,7 +27,7 @@ const UiSelectButton = ({
   const [defaultItem] = selectOptions
 
   const [selectedOption, setSelectedOption] = React.useState<SelectOption>(
-    value || defaultItem,
+    selectedValue.value ? selectedValue : defaultItem,
   )
   const [isShowDroplist, setIsShowDroplist] = React.useState<boolean>(false)
 

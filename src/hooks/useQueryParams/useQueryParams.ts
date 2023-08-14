@@ -1,12 +1,8 @@
 import * as React from 'react'
 
-import { QueryParamsFields } from '@/components/SearchResult/components/Pagination/enums'
+import { isObjEqual } from './utils'
 
-type QueryParams = {
-  [QueryParamsFields.Search]?: string
-  [QueryParamsFields.CurrentPage]?: string
-  [QueryParamsFields.PageSize]?: string
-}
+import { QueryParams } from './types'
 
 type SetQueryParams = (options: QueryParams) => void
 
@@ -27,16 +23,34 @@ export const useQueryParams = (): [QueryParams, SetQueryParams] => {
     const updatedQueryParams = new URLSearchParams(queryParams)
 
     for (const [key, value] of Object.entries(options)) {
-      updatedQueryParams.set(key, value)
+      if (value) {
+        updatedQueryParams.set(key, value)
+      } else {
+        updatedQueryParams.delete(key)
+      }
     }
 
     setQueryParams(updatedQueryParams)
   }
 
+  const handlePopState = () => {}
+
   React.useEffect(() => {
-    const newUrl = `${window.location.pathname}?${queryParams.toString()}`
-    window.history.pushState({}, '', newUrl)
+    const currentParams = new URLSearchParams(window.document.location.search)
+
+    if (!isObjEqual(queryParams, currentParams)) {
+      const newUrl = `${window.location.pathname}?${queryParams.toString()}`
+      window.history.pushState({}, '', newUrl)
+    }
   }, [queryParams])
+
+  React.useEffect(() => {
+    window.addEventListener('popstate', handlePopState)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
 
   return [getQueryParamsObj(), updateQueryParamsOptions]
 }
