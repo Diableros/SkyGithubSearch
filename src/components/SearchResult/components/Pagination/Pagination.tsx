@@ -3,7 +3,7 @@ import { Position } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButt
 import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types.ts'
 import * as S from './Pagination.style.ts'
 
-import { QueryParamsFields } from '../../../../hooks/useQueryParams/enums.ts'
+import { QueryParamsFields } from '@/hooks/useQueryParams/enums.ts'
 import { useQueryParams } from '@/hooks/useQueryParams/useQueryParams.ts'
 
 import { paginationSelectOptions } from './constants.ts'

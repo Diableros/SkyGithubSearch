@@ -1,56 +1,39 @@
 import * as React from 'react'
 
-import { isObjEqual } from './utils'
-
-import { QueryParams } from './types'
-
-type SetQueryParams = (options: QueryParams) => void
+import { QueryParams, SetQueryParams } from './types'
 
 export const useQueryParams = (): [QueryParams, SetQueryParams] => {
-  const [queryParams, setQueryParams] = React.useState<URLSearchParams>(
-    new URLSearchParams(window.document.location.search),
-  )
+  const [queryParams, setQueryParams] = React.useState<QueryParams>({})
 
-  const getQueryParamsObj = () => {
-    const queryParamsObj: QueryParams = {}
-    for (const [key, value] of queryParams) {
-      queryParamsObj[key as keyof QueryParams] = value
-    }
-    return queryParamsObj
-  }
+  const updateQueryParams = React.useCallback((newQueryParams: QueryParams) => {
+    const searchParams = new URLSearchParams(window.location.search)
 
-  const updateQueryParamsOptions = (options: QueryParams) => {
-    const updatedQueryParams = new URLSearchParams(queryParams)
-
-    for (const [key, value] of Object.entries(options)) {
+    for (const [key, value] of Object.entries(newQueryParams)) {
       if (value) {
-        updatedQueryParams.set(key, value)
+        searchParams.set(key, value)
       } else {
-        updatedQueryParams.delete(key)
+        searchParams.delete(key)
       }
     }
 
-    setQueryParams(updatedQueryParams)
-  }
-
-  const handlePopState = () => {}
-
-  React.useEffect(() => {
-    const currentParams = new URLSearchParams(window.document.location.search)
-
-    if (!isObjEqual(queryParams, currentParams)) {
-      const newUrl = `${window.location.pathname}?${queryParams.toString()}`
-      window.history.pushState({}, '', newUrl)
-    }
-  }, [queryParams])
-
-  React.useEffect(() => {
-    window.addEventListener('popstate', handlePopState)
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState)
-    }
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}?${searchParams.toString()}`,
+    )
+    setQueryParams(newQueryParams)
   }, [])
 
-  return [getQueryParamsObj(), updateQueryParamsOptions]
+  React.useEffect(() => {
+    const actualQueryParams = new URLSearchParams(window.location.search)
+    const newQueryParams: QueryParams = {}
+
+    for (const [key, value] of actualQueryParams.entries()) {
+      newQueryParams[key as keyof QueryParams] = value
+    }
+
+    setQueryParams(newQueryParams)
+  }, [])
+
+  return [queryParams, updateQueryParams]
 }
