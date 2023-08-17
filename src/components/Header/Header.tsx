@@ -1,4 +1,4 @@
-import UiIcon from '../UiIcon'
+import UiIcon from '../UiKit/UiIcon'
 
 import { logotypes } from './constants'
 

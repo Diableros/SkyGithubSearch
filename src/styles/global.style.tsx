@@ -28,9 +28,11 @@ const GlobalCSS = () => {
         display: flex;
         flex-flow: column nowrap;
 
+        gap: 1rem;
+
         min-width: 575px;
         margin: 0 auto;
-        padding: 3rem 0 0;
+        padding: 3rem 0 3rem;
         text-align: center;
       }
     }

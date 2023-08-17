@@ -1,45 +1,35 @@
-import * as React from 'react'
+import UiSelectButton from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton'
+import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
-import UiIcon from '@/components/UiIcon'
+import { QueryParamsFields } from '@/hooks/useQueryParams/enums'
+import { useQueryParams } from '@/hooks/useQueryParams/useQueryParams'
 
-import { SortBy } from './enums'
+import { sortByOptions } from './constants'
 
 import * as S from './SortByRepos.style'
 
 const SortByRepos = () => {
-  const [sortBy, setSortBy] = React.useState<SortBy>(SortBy.Default)
-  const [isShowDroplist, setIsShowDroplist] = React.useState<boolean>(false)
+  const [queryParams, setQueryParams] = useQueryParams()
 
-  const handleClickSelectItem = (clickedItem: SortBy) => {
-    setSortBy(clickedItem)
-    setIsShowDroplist(false)
+  const handleOnChange = (selectedOption: SelectOption) => {
+    setQueryParams({ [QueryParamsFields.Sort]: selectedOption.value })
   }
-
-  const droplistContent = (
-    <S.Droplist onMouseLeave={() => setIsShowDroplist(false)}>
-      {Object.values(SortBy).map(selectItem =>
-        selectItem !== sortBy ? (
-          <div
-            key={selectItem}
-            onClick={() => handleClickSelectItem(selectItem)}
-          >
-            <span>{selectItem}</span>
-          </div>
-        ) : null,
-      )}
-    </S.Droplist>
-  )
 
   return (
     <S.SortBox>
       <span>Sort result by repos quantity:</span>
-      <S.Select>
-        <span>{sortBy}</span>
-        <button type='button' onClick={() => setIsShowDroplist(prev => !prev)}>
-          <UiIcon name='arrowDown' width='1rem' />
-        </button>
-        {isShowDroplist ? droplistContent : null}
-      </S.Select>
+      <UiSelectButton
+        selectedValue={{
+          title:
+            queryParams[QueryParamsFields.Sort] &&
+            sortByOptions.find(
+              option => option.value === queryParams[QueryParamsFields.Sort],
+            ).title,
+          value: queryParams[QueryParamsFields.Sort],
+        }}
+        onChange={handleOnChange}
+        selectOptions={sortByOptions}
+      />
     </S.SortBox>
   )
 }

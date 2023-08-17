@@ -5,5 +5,5 @@ export const Header = styled.header`
 
   align-items: flex-end;
   gap: 1rem;
-  padding: 0 0 1rem 1rem;
+  padding-left: 2rem;
 `

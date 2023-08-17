@@ -1,4 +1,5 @@
 import Header from './components/Header/'
+import SearchResult from './components/SearchResult'
 import SearchForm from '@/components/SearchForm'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <SearchForm />
+      <SearchResult />
     </>
   )
 }

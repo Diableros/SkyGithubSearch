@@ -1,5 +1,5 @@
-export enum SortBy {
-  Default = 'Default',
-  Ascending = 'Ascending',
-  Descending = 'Descending',
+export enum SortByReposOptions {
+  Default = null,
+  Ascending = 'asc',
+  Descending = 'desc',
 }

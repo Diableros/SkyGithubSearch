@@ -11,7 +11,8 @@
     "format": "prettier --write src",
     "lint:script-fix": "eslint ./src/**/*.ts --fix && eslint ./src/**/*.tsx --fix",
     "prepare": "husky install",
-    "start": "pnpm build && pnpm preview"
+    "start": "pnpm build && pnpm preview",
+    "precommit": "pnpm lint:script-fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

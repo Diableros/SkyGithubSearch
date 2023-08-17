@@ -4,7 +4,8 @@ export type AppTheme = {
     textPrimary40: string
     textPrimary80: string
 
-    buttonBackground: string
+    buttonBackgroundRegular: string
+    buttonBackgroundHover: string
 
     strokeRegular: string
     strokeHover: string
@@ -12,6 +13,7 @@ export type AppTheme = {
 
     backgroundMain: string
     backgroundSecondary: string
+    backgroundThird: string
 
     inputOutline: string
   }
