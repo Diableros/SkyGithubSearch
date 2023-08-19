@@ -1,15 +1,17 @@
+import * as React from 'react'
+
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
 import { Position } from '../UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
 
-// import UiIcon from '../UiIcon'
+import { User } from '@/api/types.ts'
+import useUserQuery from '@/api/useUserQuery.ts'
+
 import * as S from './SearchResult.style'
 
-import { mockData } from './mockData.ts'
-
 const SearchResult = () => {
-  const error = ''
-  const { items: users, total_count: resultTotalCount } = mockData
+  const [users, setUsers] = React.useState<User[]>([])
+  const { data, error } = useUserQuery()
 
   // const beforeSearchContent = (
   //   <S.CoverContent>
@@ -20,10 +22,13 @@ const SearchResult = () => {
 
   const searchSuccessContent = (
     <>
-      <Pagination resultTotalCount={resultTotalCount} position={Position.Top} />
-      <ResultList resultData={users} />
       <Pagination
-        resultTotalCount={resultTotalCount}
+        resultTotalCount={data?.total_count || 0}
+        position={Position.Top}
+      />
+      <ResultList resultData={users || []} />
+      <Pagination
+        resultTotalCount={data?.total_count || 0}
         position={Position.Bottom}
       />
     </>
@@ -31,11 +36,18 @@ const SearchResult = () => {
 
   const searchFailContent = <p>Not found</p>
 
-  const searchResultContent = resultTotalCount
+  const searchResultContent = data?.total_count
     ? searchSuccessContent
     : searchFailContent
 
   const searchQueryErrorContent = <p>Query error</p>
+
+  React.useEffect(() => {
+    if (data) {
+      setUsers(data.items)
+    }
+    console.log(`data =>`, data)
+  }, [data])
 
   return (
     <S.SearchResultWrapper>

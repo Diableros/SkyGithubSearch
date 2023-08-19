@@ -33,7 +33,7 @@ export const useQueryParams = (): [QueryParams, SetQueryParams] => {
     }
 
     setQueryParams(newQueryParams)
-  }, [])
+  }, [window.location.search])
 
   return [queryParams, updateQueryParams]
 }
