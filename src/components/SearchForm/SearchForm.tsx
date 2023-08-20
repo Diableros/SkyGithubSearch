@@ -4,6 +4,9 @@ import SortByRepos from './components/SortByRepos'
 import UiButton from '../UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '../UiKit/UiIcon'
 
+import { Action, useSearchContext } from '@/context'
+import useUserQuery from '@/api/useUserQuery'
+
 import * as TEXT from './constants'
 
 import * as S from './SearchForm.style'
@@ -11,6 +14,9 @@ import * as S from './SearchForm.style'
 const SearchForm = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [searchText, setSearchText] = React.useState('')
+  const [, dispatch] = useSearchContext()
+
+  const { isFetching } = useUserQuery()
 
   const handleOnChangeInput = () => {
     const { value: inputCurrentValue } = inputRef.current
@@ -19,7 +25,8 @@ const SearchForm = () => {
 
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
-    console.log(searchText)
+    dispatch({ type: Action.SearchText, payload: searchText })
+    dispatch({ type: Action.DisableFirstSearch })
   }
 
   React.useEffect(() => {
@@ -46,7 +53,13 @@ const SearchForm = () => {
         <UiButton
           title={TEXT.SEARCH_BUTTON_TITLE}
           type='submit'
-          icon={<UiIcon name='search' width='18' />}
+          icon={
+            isFetching ? (
+              <UiIcon name='loader' width='18' />
+            ) : (
+              <UiIcon name='search' width='18' />
+            )
+          }
         />
       </S.ButtonsBox>
     </S.SearchForm>

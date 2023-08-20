@@ -8,7 +8,7 @@ import { Position } from './enums'
 import * as S from './UiSelectButton.style'
 
 type PropsType = {
-  onChange: (value: SelectOption) => void
+  onChange: (clickedItem: SelectOption) => void
   selectOptions: SelectOptions
   selectedValue?: SelectOption
   position?: Position

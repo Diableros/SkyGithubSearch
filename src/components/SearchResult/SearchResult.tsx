@@ -1,45 +1,51 @@
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
 import { Position } from '../UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
+import UiIcon from '../UiKit/UiIcon/UiIcon.tsx'
 
-// import UiIcon from '../UiIcon'
+import { useSearchContext } from '@/context/searchContext.ts'
+import useUserQuery from '@/api/useUserQuery.ts'
+
 import * as S from './SearchResult.style'
 
-import { mockData } from './mockData.ts'
-
 const SearchResult = () => {
-  const error = ''
-  const { items: users, total_count: resultTotalCount } = mockData
+  const [{ isFirstSearch }] = useSearchContext()
+  const { data, error } = useUserQuery()
 
-  // const beforeSearchContent = (
-  //   <S.CoverContent>
-  //     <S.CoverTitle>Start the Search!</S.CoverTitle>
-  //     <UiIcon name='search' width='10rem' color='inherit' />
-  //   </S.CoverContent>
-  // )
+  const beforeSearchContent = (
+    <S.CoverContent>
+      <S.CoverTitle>Start the Search!</S.CoverTitle>
+      <UiIcon name='search' width='10rem' color='inherit' />
+    </S.CoverContent>
+  )
 
-  const searchSuccessContent = (
+  const searchResultContent = (
     <>
-      <Pagination resultTotalCount={resultTotalCount} position={Position.Top} />
-      <ResultList resultData={users} />
       <Pagination
-        resultTotalCount={resultTotalCount}
+        resultTotalCount={data?.total_count || 0}
+        position={Position.Top}
+      />
+      <ResultList resultData={data?.items || []} />
+      <Pagination
+        resultTotalCount={data?.total_count || 0}
         position={Position.Bottom}
       />
     </>
   )
 
-  const searchFailContent = <p>Not found</p>
+  const searchFailContent = error ? (
+    <p>Query error: {error.message}</p>
+  ) : (
+    <p>Not found</p>
+  )
 
-  const searchResultContent = resultTotalCount
-    ? searchSuccessContent
+  const searchResult = data?.total_count
+    ? searchResultContent
     : searchFailContent
-
-  const searchQueryErrorContent = <p>Query error</p>
 
   return (
     <S.SearchResultWrapper>
-      {!error ? searchResultContent : searchQueryErrorContent}
+      {isFirstSearch ? beforeSearchContent : searchResult}
     </S.SearchResultWrapper>
   )
 }
