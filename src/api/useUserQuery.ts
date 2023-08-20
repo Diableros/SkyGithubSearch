@@ -1,31 +1,54 @@
 import { useQuery } from '@tanstack/react-query'
+import { SearchParamsOption } from 'ky'
 
 import { Action, useSearchContext } from '@/context'
 
 import { SuccessResponse } from './types'
+import { ParamsFields } from './enums'
 
-const BASE_URL = 'https://api.github.com/search/users'
+import { api } from './api'
 
 const useUserQuery = () => {
-  const [{ search }, dispatch] = useSearchContext()
+  const [
+    {
+      search,
+      pagination: { currentPage, pageSize },
+      sort: { value: sort },
+    },
+    dispatch,
+  ] = useSearchContext()
 
-  const handleFetch = async () => {
-    const fullUrl = `${BASE_URL}?`
+  const handleQuery = async () => {
+    const paramsObj: SearchParamsOption = {
+      [ParamsFields.Search]: search,
+      [ParamsFields.CurrentPage]: currentPage,
+      [ParamsFields.PageSize]: pageSize,
+    }
 
-    return fetch(fullUrl).then(response =>
-      response.json().catch(error => {
-        const { message } = error as Error
-
-        dispatch({ type: Action.SetError, payload: message })
-      }),
-    )
+    if (sort) {
+      paramsObj[ParamsFields.Sort] = sort
+    }
+    try {
+      return await api
+        .get('search/users', { searchParams: paramsObj })
+        .json<SuccessResponse>()
+    } catch (error) {
+      const { message } = error as Error
+      throw new Error(message)
+    }
   }
 
   const { data, isFetching, error } = useQuery<SuccessResponse, Error>({
-    queryKey: ['users'],
-    queryFn: handleFetch,
+    queryKey: ['users', search, currentPage, pageSize, sort],
+    queryFn: handleQuery,
     enabled: !!search,
-    onSuccess: () => dispatch({ type: Action.DisableFirstSearch }),
+    onSuccess: () => {
+      dispatch({ type: Action.DisableFirstSearch })
+      dispatch({ type: Action.ClearErrors })
+    },
+    onError: ({ message }) => {
+      dispatch({ type: Action.SetError, payload: message })
+    },
   })
 
   return { data, isFetching, error }

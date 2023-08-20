@@ -10,7 +10,7 @@ import * as S from './SearchResult.style'
 
 const SearchResult = () => {
   const [{ isFirstSearch }] = useSearchContext()
-  const { data, error } = useUserQuery()
+  const { data, error, isFetching } = useUserQuery()
 
   const beforeSearchContent = (
     <S.CoverContent>
@@ -33,10 +33,12 @@ const SearchResult = () => {
     </>
   )
 
+  const searchStatus = isFetching ? <p>Searching...</p> : <p>Not found</p>
+
   const searchFailContent = error ? (
     <p>Query error: {error.message}</p>
   ) : (
-    <p>Not found</p>
+    searchStatus
   )
 
   const searchResult = data?.total_count
