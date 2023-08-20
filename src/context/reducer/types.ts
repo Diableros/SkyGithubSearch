@@ -1,4 +1,4 @@
-import { SortByReposOptions } from '@/components/SearchForm/components/SortByRepos/enums'
+import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
 import { Pagination, SearchState } from '../types'
 import { Action } from './enums'
@@ -14,7 +14,7 @@ export type SearchAction =
     }
   | {
       type: Action.Sort
-      payload: SortByReposOptions
+      payload: SelectOption
     }
   | {
       type: Action.SetError
@@ -22,7 +22,11 @@ export type SearchAction =
     }
   | {
       type: Action.ClearErrors
-      payload: null
+      payload?: null
+    }
+  | {
+      type: Action.DisableFirstSearch
+      payload?: null
     }
 
 export type SearchReducer = (

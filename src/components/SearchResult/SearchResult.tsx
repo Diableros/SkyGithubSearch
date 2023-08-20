@@ -1,32 +1,31 @@
-import * as React from 'react'
-
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
 import { Position } from '../UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
+import UiIcon from '../UiKit/UiIcon/UiIcon.tsx'
 
-import { User } from '@/api/types.ts'
+import { useSearchContext } from '@/context/searchContext.ts'
 import useUserQuery from '@/api/useUserQuery.ts'
 
 import * as S from './SearchResult.style'
 
 const SearchResult = () => {
-  const [users, setUsers] = React.useState<User[]>([])
+  const [{ isFirstSearch }] = useSearchContext()
   const { data, error } = useUserQuery()
 
-  // const beforeSearchContent = (
-  //   <S.CoverContent>
-  //     <S.CoverTitle>Start the Search!</S.CoverTitle>
-  //     <UiIcon name='search' width='10rem' color='inherit' />
-  //   </S.CoverContent>
-  // )
+  const beforeSearchContent = (
+    <S.CoverContent>
+      <S.CoverTitle>Start the Search!</S.CoverTitle>
+      <UiIcon name='search' width='10rem' color='inherit' />
+    </S.CoverContent>
+  )
 
-  const searchSuccessContent = (
+  const searchResultContent = (
     <>
       <Pagination
         resultTotalCount={data?.total_count || 0}
         position={Position.Top}
       />
-      <ResultList resultData={users || []} />
+      <ResultList resultData={data?.items || []} />
       <Pagination
         resultTotalCount={data?.total_count || 0}
         position={Position.Bottom}
@@ -34,24 +33,19 @@ const SearchResult = () => {
     </>
   )
 
-  const searchFailContent = <p>Not found</p>
+  const searchFailContent = error ? (
+    <p>Query error: {error.message}</p>
+  ) : (
+    <p>Not found</p>
+  )
 
-  const searchResultContent = data?.total_count
-    ? searchSuccessContent
+  const searchResult = data?.total_count
+    ? searchResultContent
     : searchFailContent
-
-  const searchQueryErrorContent = <p>Query error</p>
-
-  React.useEffect(() => {
-    if (data) {
-      setUsers(data.items)
-    }
-    console.log(`data =>`, data)
-  }, [data])
 
   return (
     <S.SearchResultWrapper>
-      {!error ? searchResultContent : searchQueryErrorContent}
+      {isFirstSearch ? beforeSearchContent : searchResult}
     </S.SearchResultWrapper>
   )
 }

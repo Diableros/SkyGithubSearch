@@ -1,25 +1,28 @@
 import { SearchReducer } from './types'
 import { Action } from './enums'
 
-export const userReducer: SearchReducer = (state, action) => {
+export const searhReducer: SearchReducer = (state, action) => {
   switch (action.type) {
-    case Action.SearchText:
+    case Action.SearchText: {
       return {
         ...state,
         search: action.payload,
       }
+    }
 
-    case Action.Pagination:
+    case Action.Pagination: {
       return {
         ...state,
         pagination: action.payload,
       }
+    }
 
-    case Action.Sort:
+    case Action.Sort: {
       return {
         ...state,
         sort: action.payload,
       }
+    }
 
     case Action.SetError: {
       const errors = state.errors
@@ -31,13 +34,22 @@ export const userReducer: SearchReducer = (state, action) => {
       }
     }
 
-    case Action.ClearErrors:
+    case Action.ClearErrors: {
       return {
         ...state,
         errors: [],
       }
+    }
 
-    default:
+    case Action.DisableFirstSearch: {
+      return {
+        ...state,
+        isFirstSearch: false,
+      }
+    }
+
+    default: {
       return state
+    }
   }
 }

@@ -4,4 +4,5 @@ export const enum Action {
   Sort = 'sort',
   SetError = 'setError',
   ClearErrors = 'clearErrors',
+  DisableFirstSearch = 'disableFirstSearch',
 }

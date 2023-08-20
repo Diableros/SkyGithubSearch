@@ -1,4 +1,4 @@
-export enum QueryParamsFields {
+export enum SearchParamsFields {
   Search = 'q',
   CurrentPage = 'page',
   PageSize = 'per_page',

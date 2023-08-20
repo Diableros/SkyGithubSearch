@@ -4,20 +4,17 @@ import SortByRepos from './components/SortByRepos'
 import UiButton from '../UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '../UiKit/UiIcon'
 
-import { isEmptyObject } from '@/utils'
+import { Action, useSearchContext } from '@/context'
 import useUserQuery from '@/api/useUserQuery'
-import useQueryParams from '@/hooks/useQueryParams'
-import { QueryParamsFields } from '@/hooks/useQueryParams/enums'
 
 import * as TEXT from './constants'
-import { initQueryParams } from '@/hooks/useQueryParams/constants'
 
 import * as S from './SearchForm.style'
 
 const SearchForm = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [searchText, setSearchText] = React.useState('')
-  const [queryParams, setQueryParams] = useQueryParams()
+  const [, dispatch] = useSearchContext()
 
   const { isFetching } = useUserQuery()
 
@@ -28,10 +25,8 @@ const SearchForm = () => {
 
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
-    setQueryParams({
-      ...(isEmptyObject(queryParams) ? initQueryParams : queryParams),
-      [QueryParamsFields.Search]: searchText,
-    })
+    dispatch({ type: Action.SearchText, payload: searchText })
+    dispatch({ type: Action.DisableFirstSearch })
   }
 
   React.useEffect(() => {

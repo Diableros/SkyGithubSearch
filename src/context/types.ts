@@ -1,4 +1,4 @@
-import { SortByReposOptions } from '@/components/SearchForm/components/SortByRepos/enums'
+import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
 import { SearchAction } from './reducer/types'
 
@@ -11,8 +11,9 @@ export type Pagination = {
 export type SearchState = {
   search: string
   pagination: Pagination
-  sort: SortByReposOptions
+  sort: SelectOption
   errors: string[]
+  isFirstSearch: boolean
 }
 
 export type UserContext = [SearchState, React.Dispatch<SearchAction>]

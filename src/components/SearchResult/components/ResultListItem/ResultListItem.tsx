@@ -34,9 +34,7 @@ const ResultListItem = ({
             <UiIcon name={isLoading ? 'loader' : 'arrowDown'} width='1rem' />
           }
           onClick={() => {
-            // TODO send real query
             toggleLoading(prev => !prev)
-            console.log(`Show details ${login}`)
           }}
         />
       </UiTooltip>

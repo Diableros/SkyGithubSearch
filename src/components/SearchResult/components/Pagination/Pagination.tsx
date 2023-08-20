@@ -3,9 +3,6 @@ import { Position } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButt
 import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types.ts'
 import * as S from './Pagination.style.ts'
 
-import { QueryParamsFields } from '@/hooks/useQueryParams/enums.ts'
-import { useQueryParams } from '@/hooks/useQueryParams/useQueryParams.ts'
-
 import { paginationSelectOptions } from './constants.ts'
 
 type PropsType = {
@@ -13,20 +10,17 @@ type PropsType = {
   position: Position
 }
 
-const UiPagination = ({ position }: PropsType) => {
-  const [queryParams, setQueryParams] = useQueryParams()
-  // console.log(`queryParamsObj =>`, queryParams)
-
+const Pagination = ({ position }: PropsType) => {
   const handleOnChange = (selectedOption: SelectOption) => {
-    setQueryParams({ [QueryParamsFields.PageSize]: selectedOption.value })
+    console.log(selectedOption)
   }
 
   return (
     <S.PaginationBox>
       <UiSelectButton
         selectedValue={{
-          title: queryParams[QueryParamsFields.PageSize],
-          value: queryParams[QueryParamsFields.PageSize],
+          title: 'title',
+          value: 'value',
         }}
         onChange={handleOnChange}
         selectOptions={paginationSelectOptions}
@@ -37,4 +31,4 @@ const UiPagination = ({ position }: PropsType) => {
   )
 }
 
-export default UiPagination
+export default Pagination
