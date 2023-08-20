@@ -2,7 +2,7 @@ import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelect
 
 import { SearchAction } from './reducer/types'
 
-export type Pagination = {
+export type PaginationData = {
   currentPage: number
   pageSize: number
   totalCount?: number
@@ -10,7 +10,7 @@ export type Pagination = {
 
 export type SearchState = {
   search: string
-  pagination: Pagination
+  pagination: PaginationData
   sort: SelectOption
   errors: string[]
   isFirstSearch: boolean

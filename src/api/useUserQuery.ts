@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { SearchParamsOption } from 'ky'
+import { HTTPError, SearchParamsOption } from 'ky'
 
 import { Action, useSearchContext } from '@/context'
 
@@ -33,21 +33,25 @@ const useUserQuery = () => {
         .get('search/users', { searchParams: paramsObj })
         .json<SuccessResponse>()
     } catch (error) {
-      const { message } = error as Error
-      throw new Error(message)
+      const { response } = error as HTTPError
+      if (response.status) throw response.status
     }
   }
 
-  const { data, isFetching, error } = useQuery<SuccessResponse, Error>({
+  const { data, isFetching, error } = useQuery<SuccessResponse, number>({
     queryKey: ['users', search, currentPage, pageSize, sort],
     queryFn: handleQuery,
     enabled: !!search,
-    onSuccess: () => {
+    onSuccess: data => {
+      dispatch({
+        type: Action.Pagination,
+        payload: { currentPage, pageSize, totalCount: data.total_count },
+      })
       dispatch({ type: Action.DisableFirstSearch })
       dispatch({ type: Action.ClearErrors })
     },
-    onError: ({ message }) => {
-      dispatch({ type: Action.SetError, payload: message })
+    onError: errorCode => {
+      dispatch({ type: Action.SetError, payload: String(errorCode) })
     },
   })
 

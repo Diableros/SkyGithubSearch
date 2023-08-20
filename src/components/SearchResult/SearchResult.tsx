@@ -1,9 +1,9 @@
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
-import { Position } from '../UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
 import UiIcon from '../UiKit/UiIcon/UiIcon.tsx'
 
 import { useSearchContext } from '@/context/searchContext.ts'
+import { decodeError } from './utils.ts'
 import useUserQuery from '@/api/useUserQuery.ts'
 
 import * as S from './SearchResult.style'
@@ -20,23 +20,29 @@ const SearchResult = () => {
   )
 
   const searchResultContent = (
-    <>
-      <Pagination
-        resultTotalCount={data?.total_count || 0}
-        position={Position.Top}
-      />
+    <Pagination>
       <ResultList resultData={data?.items || []} />
-      <Pagination
-        resultTotalCount={data?.total_count || 0}
-        position={Position.Bottom}
-      />
-    </>
+    </Pagination>
   )
 
-  const searchStatus = isFetching ? <p>Searching...</p> : <p>Not found</p>
+  const searchStatus = (
+    <S.CoverContent>
+      <S.CoverTitle>
+        {isFetching ? 'Searching...' : 'No matches found...'}
+      </S.CoverTitle>
+      <UiIcon
+        name={isFetching ? 'search' : 'sadFace'}
+        width='10rem'
+        color='inherit'
+      />
+    </S.CoverContent>
+  )
 
   const searchFailContent = error ? (
-    <p>Query error: {error.message}</p>
+    <S.CoverContent>
+      <S.CoverErrorText>{decodeError(error)}</S.CoverErrorText>
+      <UiIcon name='sadFace' width='10rem' color='inherit' />
+    </S.CoverContent>
   ) : (
     searchStatus
   )
