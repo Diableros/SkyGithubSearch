@@ -8,6 +8,7 @@ export const SearchResultWrapper = styled.main`
 
   flex: 1;
   flex-basis: 575px;
+  width: 575px;
 
   padding: 1rem;
 
@@ -24,10 +25,16 @@ export const CoverContent = styled.div`
   flex-flow: column nowrap;
   align-items: center;
 
+  gap: 1rem;
+
   color: ${({ theme }) => theme.colors.textPrimary40};
 `
 
 export const CoverTitle = styled.span`
   font-size: 3rem;
+  font-weight: 500;
+`
+export const CoverErrorText = styled.span`
+  font-size: 1.5rem;
   font-weight: 500;
 `

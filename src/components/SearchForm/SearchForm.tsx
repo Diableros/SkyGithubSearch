@@ -26,7 +26,6 @@ const SearchForm = () => {
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     dispatch({ type: Action.SearchText, payload: searchText })
-    dispatch({ type: Action.DisableFirstSearch })
   }
 
   React.useEffect(() => {

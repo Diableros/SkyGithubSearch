@@ -25,8 +25,9 @@ export const searhReducer: SearchReducer = (state, action) => {
     }
 
     case Action.SetError: {
+      const error = action.payload
       const errors = state.errors
-      errors.push(action.payload)
+      if (!errors.includes(error)) errors.push(error)
 
       return {
         ...state,

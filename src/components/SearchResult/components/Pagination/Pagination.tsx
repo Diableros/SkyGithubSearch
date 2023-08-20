@@ -1,33 +1,19 @@
-import UiSelectButton from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton'
-import { Position } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
-import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types.ts'
-import * as S from './Pagination.style.ts'
+import * as React from 'react'
 
-import { paginationSelectOptions } from './constants.ts'
+import PaginationBar from './components/PaginationBar.tsx'
+import { Position } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/enums.ts'
 
 type PropsType = {
-  resultTotalCount: number
-  position: Position
+  children: React.ReactNode
 }
 
-const Pagination = ({ position }: PropsType) => {
-  const handleOnChange = (selectedOption: SelectOption) => {
-    console.log(selectedOption)
-  }
-
+const Pagination = ({ children }: PropsType) => {
   return (
-    <S.PaginationBox>
-      <UiSelectButton
-        selectedValue={{
-          title: 'title',
-          value: 'value',
-        }}
-        onChange={handleOnChange}
-        selectOptions={paginationSelectOptions}
-        position={position}
-        width='0'
-      />
-    </S.PaginationBox>
+    <>
+      <PaginationBar position={Position.Top} />
+      {children}
+      <PaginationBar position={Position.Bottom} />
+    </>
   )
 }
 

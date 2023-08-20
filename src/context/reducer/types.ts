@@ -1,6 +1,6 @@
 import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
-import { Pagination, SearchState } from '../types'
+import { PaginationData, SearchState } from '../types'
 import { Action } from './enums'
 
 export type SearchAction =
@@ -10,7 +10,7 @@ export type SearchAction =
     }
   | {
       type: Action.Pagination
-      payload: Pagination
+      payload: PaginationData
     }
   | {
       type: Action.Sort

@@ -8,6 +8,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 1000 * 60 * 60,
+      retry: 0,
     },
   },
 })
@@ -16,7 +17,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <SearchContextProvider>
       <ThemeProvider>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </ThemeProvider>
     </SearchContextProvider>
   )
