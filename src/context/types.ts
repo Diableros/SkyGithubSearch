@@ -12,7 +12,7 @@ export type SearchState = {
   search: string
   pagination: PaginationData
   sort: SelectOption
-  errors: string[]
+  errors: number[]
   isFirstSearch: boolean
 }
 

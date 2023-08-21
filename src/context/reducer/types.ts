@@ -13,12 +13,12 @@ export type SearchAction =
       payload: PaginationData
     }
   | {
-      type: Action.Sort
+      type: Action.Order
       payload: SelectOption
     }
   | {
       type: Action.SetError
-      payload: string
+      payload: number
     }
   | {
       type: Action.ClearErrors
