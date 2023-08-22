@@ -9,7 +9,7 @@ export const DetailsWrapper = styled.section<DetailsWrapperProps>`
   grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: row;
 
-  padding: ${({ isOpen }) => (isOpen ? '1rem' : '0')};
+  padding: ${({ isOpen }) => (isOpen ? '0.5rem' : '0')};
 
   height: ${({ isOpen }) => (isOpen ? 'fit-content' : '0')};
   border: ${({ isOpen, theme }) =>
