@@ -1,7 +1,7 @@
 export const enum Action {
   SearchText = 'searchText',
   Pagination = 'pagination',
-  Sort = 'sort',
+  Order = 'order',
   SetError = 'setError',
   ClearErrors = 'clearErrors',
   DisableFirstSearch = 'disableFirstSearch',

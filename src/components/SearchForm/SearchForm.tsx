@@ -5,7 +5,7 @@ import UiButton from '../UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '../UiKit/UiIcon'
 
 import { Action, useSearchContext } from '@/context'
-import useUserQuery from '@/api/useUserQuery'
+import useSearchQuery from '@/api/useSearchQuery'
 
 import * as TEXT from './constants'
 
@@ -14,9 +14,9 @@ import * as S from './SearchForm.style'
 const SearchForm = () => {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [searchText, setSearchText] = React.useState('')
-  const [, dispatch] = useSearchContext()
+  const [{ pagination }, dispatch] = useSearchContext()
 
-  const { isFetching } = useUserQuery()
+  const { isFetching } = useSearchQuery()
 
   const handleOnChangeInput = () => {
     const { value: inputCurrentValue } = inputRef.current
@@ -26,6 +26,10 @@ const SearchForm = () => {
   const handleOnSumbit: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault()
     dispatch({ type: Action.SearchText, payload: searchText })
+    dispatch({
+      type: Action.Pagination,
+      payload: { ...pagination, currentPage: 1 },
+    })
   }
 
   React.useEffect(() => {

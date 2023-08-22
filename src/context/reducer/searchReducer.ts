@@ -17,7 +17,7 @@ export const searhReducer: SearchReducer = (state, action) => {
       }
     }
 
-    case Action.Sort: {
+    case Action.Order: {
       return {
         ...state,
         sort: action.payload,

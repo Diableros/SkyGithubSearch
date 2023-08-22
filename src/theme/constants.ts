@@ -20,6 +20,6 @@ export const THEME: AppTheme = {
     inputOutline: 'rgb(47, 129, 247)',
   },
   border: {
-    radius: '6px',
+    radius: '5px',
   },
 }

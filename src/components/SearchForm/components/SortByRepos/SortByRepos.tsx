@@ -11,7 +11,7 @@ const SortByRepos = () => {
   const [{ sort }, dispatch] = useSearchContext()
 
   const handleOnChange = (selectedOption: SelectOption) => {
-    dispatch({ type: Action.Sort, payload: selectedOption })
+    dispatch({ type: Action.Order, payload: selectedOption })
   }
 
   return (

@@ -8,7 +8,7 @@ import { ParamsFields } from './enums'
 
 import { api } from './api'
 
-const useUserQuery = () => {
+const useSearchQuery = () => {
   const [
     {
       search,
@@ -26,8 +26,10 @@ const useUserQuery = () => {
     }
 
     if (sort) {
-      paramsObj[ParamsFields.Sort] = sort
+      paramsObj['sort'] = 'repositories'
+      paramsObj[ParamsFields.Order] = sort
     }
+
     try {
       return await api
         .get('search/users', { searchParams: paramsObj })
@@ -51,11 +53,15 @@ const useUserQuery = () => {
       dispatch({ type: Action.ClearErrors })
     },
     onError: errorCode => {
-      dispatch({ type: Action.SetError, payload: String(errorCode) })
+      dispatch({
+        type: Action.Pagination,
+        payload: { pageSize, currentPage: 1 },
+      })
+      dispatch({ type: Action.SetError, payload: errorCode })
     },
   })
 
   return { data, isFetching, error }
 }
 
-export default useUserQuery
+export default useSearchQuery

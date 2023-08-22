@@ -4,13 +4,13 @@ import UiIcon from '../UiKit/UiIcon/UiIcon.tsx'
 
 import { useSearchContext } from '@/context/searchContext.ts'
 import { decodeError } from './utils.ts'
-import useUserQuery from '@/api/useUserQuery.ts'
+import useSearchQuery from '@/api/useSearchQuery.ts'
 
 import * as S from './SearchResult.style'
 
 const SearchResult = () => {
   const [{ isFirstSearch }] = useSearchContext()
-  const { data, error, isFetching } = useUserQuery()
+  const { data, error, isFetching } = useSearchQuery()
 
   const beforeSearchContent = (
     <S.CoverContent>
