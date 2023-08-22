@@ -33,6 +33,7 @@ export const UserAvatar = styled.img`
   width: 3rem;
 
   border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
 `
 
 export const Type = styled.span`

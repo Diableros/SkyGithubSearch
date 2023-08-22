@@ -25,6 +25,7 @@ const GlobalCSS = () => {
       color: ${theme.colors.textPrimary};
 
       & > div {
+        position: relative;
         display: flex;
         flex-flow: column nowrap;
 

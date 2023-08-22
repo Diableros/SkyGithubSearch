@@ -75,6 +75,7 @@ const PaginationBar = ({ children }: PropsType) => {
         pageSize={pageSize}
         onChange={onChange}
         itemRender={itemRender}
+        showSizeChanger
       />
 
       {children}
@@ -86,6 +87,7 @@ const PaginationBar = ({ children }: PropsType) => {
         pageSize={pageSize}
         onChange={onChange}
         itemRender={itemRender}
+        showSizeChanger
       />
     </>
   )

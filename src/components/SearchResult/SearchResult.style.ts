@@ -20,8 +20,8 @@ export const SearchResultWrapper = styled.main`
 `
 
 export const SearchResultContent = styled.main`
-  display: grid;
-  grid-auto-flow: row;
+  display: flex;
+  flex-direction: column;
 
   gap: 1rem;
 
