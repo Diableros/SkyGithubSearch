@@ -21,7 +21,9 @@ const SearchResult = () => {
 
   const searchResultContent = (
     <Pagination>
-      <ResultList resultData={data?.items || []} />
+      <S.SearchResultContent>
+        <ResultList resultData={data?.items || []} />
+      </S.SearchResultContent>
     </Pagination>
   )
 

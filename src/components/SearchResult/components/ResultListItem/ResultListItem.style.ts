@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+type IconRotatorProps = {
+  rotate: boolean
+}
+
 export const ResultListItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,4 +42,9 @@ export const Type = styled.span`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.textPrimary40};
   font-weight: 100;
+`
+
+export const IconRotator = styled.div<IconRotatorProps>`
+  transform: rotate(${({ rotate }) => (rotate ? '180deg' : '0')});
+  transition: transform 0.4s;
 `

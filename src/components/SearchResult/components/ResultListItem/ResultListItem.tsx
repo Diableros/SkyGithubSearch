@@ -43,7 +43,12 @@ const ResultListItem = ({
           <UiButton
             hPadding='0.5rem'
             title={
-              <UiIcon name={isLoading ? 'loader' : 'arrowDown'} width='1rem' />
+              <S.IconRotator rotate={isDetailsOpen}>
+                <UiIcon
+                  name={isLoading ? 'loader' : 'arrowDown'}
+                  width='1rem'
+                />
+              </S.IconRotator>
             }
             onClick={() => {
               if (!data) {
