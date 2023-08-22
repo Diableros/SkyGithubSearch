@@ -31,7 +31,7 @@ const useSearchQuery = () => {
     }
 
     try {
-      return await api
+      return api
         .get('search/users', { searchParams: paramsObj })
         .json<SuccessResponse>()
     } catch (error) {

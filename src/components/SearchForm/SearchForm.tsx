@@ -56,13 +56,8 @@ const SearchForm = () => {
         <UiButton
           title={TEXT.SEARCH_BUTTON_TITLE}
           type='submit'
-          icon={
-            isFetching ? (
-              <UiIcon name='loader' width='18' />
-            ) : (
-              <UiIcon name='search' width='18' />
-            )
-          }
+          icon={<UiIcon name={isFetching ? 'loader' : 'search'} width='18' />}
+          hPadding='1rem'
         />
       </S.ButtonsBox>
     </S.SearchForm>

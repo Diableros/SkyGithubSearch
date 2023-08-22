@@ -19,6 +19,9 @@ export const SelectBox = styled.div`
 export const SelectedValue = styled.div<SelectedValueProps>`
   ${buttonGeneral}
 
+  padding-left: 1rem;
+  padding-right: 1rem;
+
   width: ${({ width }) => width};
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -34,7 +37,7 @@ export const SelectedValue = styled.div<SelectedValueProps>`
 export const SelectDropButton = styled.button`
   ${buttonGeneral}
 
-  padding-left: 0 0.5rem;
+  padding: 0 0.5rem;
 
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

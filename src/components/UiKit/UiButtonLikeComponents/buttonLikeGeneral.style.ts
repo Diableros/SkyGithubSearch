@@ -6,7 +6,7 @@ export const buttonGeneral: CssThemed = ({ theme }) => css`
   align-items: center;
   gap: 0.5rem;
 
-  padding: 0.2rem 1.2rem 0.2rem;
+  padding: 0.2rem 0 0.2rem;
 
   font-size: 1rem;
   font-weight: 500;

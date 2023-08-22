@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+type IconRotatorProps = {
+  rotate: boolean
+}
+
 export const ResultListItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -29,6 +33,7 @@ export const UserAvatar = styled.img`
   width: 3rem;
 
   border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.colors.strokeRegular};
 `
 
 export const Type = styled.span`
@@ -38,4 +43,9 @@ export const Type = styled.span`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.textPrimary40};
   font-weight: 100;
+`
+
+export const IconRotator = styled.div<IconRotatorProps>`
+  transform: rotate(${({ rotate }) => (rotate ? '180deg' : '0')});
+  transition: transform 0.4s;
 `
