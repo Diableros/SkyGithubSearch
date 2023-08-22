@@ -2,6 +2,7 @@ export type AppTheme = {
   colors: {
     textPrimary: string
     textPrimary40: string
+    textPrimary60: string
     textPrimary80: string
 
     buttonBackgroundRegular: string

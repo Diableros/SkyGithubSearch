@@ -4,6 +4,7 @@ export const THEME: AppTheme = {
   colors: {
     textPrimary: 'rgb(230, 237, 243)',
     textPrimary40: 'rgba(201, 209, 217, 40%)',
+    textPrimary60: 'rgba(201, 209, 217, 60%)',
     textPrimary80: 'rgba(230, 237, 243, 80%)',
 
     backgroundMain: 'rgb(1, 4, 9)',

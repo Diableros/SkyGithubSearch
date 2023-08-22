@@ -26,7 +26,7 @@ export type SuccessResponse = {
   items: User[]
 }
 
-export type UserDetail = {
+export type UserDetails = {
   login: string
   id: number
   node_id: string
