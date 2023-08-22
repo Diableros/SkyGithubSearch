@@ -1,0 +1,48 @@
+.ant-pagination-options-size-changer {
+  background-color: rgb(33, 38, 45) !important;
+
+  .ant-select-selector {
+    background-color: rgb(33, 38, 45) !important;
+    color: rgba(230, 237, 243, 80%) !important;
+    border: 1px solid rgb(54, 59, 66) !important;
+
+    .ant-select-selection-item {
+      background-color: rgb(33, 38, 45) !important;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .ant-select-selection-search {
+      &-input {
+        color: rgba(230, 237, 243, 80%) !important;
+      }
+    }
+  }
+  .ant-select-dropdown {
+    background-color: rgb(33, 38, 45);
+    color: rgba(230, 237, 243, 80%) !important;
+  }
+
+  .ant-select-item-option {
+    color: rgba(230, 237, 243, 80%) !important;
+    &:hover {
+      background-color: rgba(54, 59, 66, 50%) !important;
+    }
+
+    &-selected {
+      background-color: rgba(54, 59, 66, 80%) !important;
+
+      &:hover {
+        background-color: rgba(54, 59, 66, 50%) !important;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: end;
+
+  height: 1.5rem;
+}
