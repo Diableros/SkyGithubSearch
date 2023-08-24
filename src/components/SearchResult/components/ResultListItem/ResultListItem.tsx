@@ -9,6 +9,8 @@ import UiTooltip from '@/components/UiKit/UiTooltip'
 import { User } from '@/api/types'
 import useUserDetails from '@/api/useUserDetails'
 
+import { TestID } from '@/enums'
+
 import * as S from './ResultListItem.style'
 
 type PropsType = {
@@ -30,7 +32,7 @@ const ResultListItem = ({
   }, [data, isLoading])
 
   return (
-    <section>
+    <section data-testid={TestID.ResultListItem}>
       <S.ResultListItem key={id}>
         <UiTooltip tooltipText={`Go to ${type.toLowerCase()} page`}>
           <S.UserInfo onClick={() => window.open(html_url, '_blank')}>

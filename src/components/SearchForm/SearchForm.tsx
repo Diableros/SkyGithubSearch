@@ -8,6 +8,7 @@ import { Action, useSearchContext } from '@/context'
 import useSearchQuery from '@/api/useSearchQuery'
 
 import * as TEXT from './constants'
+import { TestID } from '@/enums'
 
 import * as S from './SearchForm.style'
 
@@ -50,6 +51,7 @@ const SearchForm = () => {
         pattern={TEXT.INPUT_PATTERN_REGEXP}
         title={TEXT.INVALID_VALUE_MSG}
         onChange={handleOnChangeInput}
+        data-testid={TestID.SearchInput}
       />
       <S.ButtonsBox>
         <SortByRepos />
