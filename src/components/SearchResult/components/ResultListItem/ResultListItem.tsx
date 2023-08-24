@@ -43,7 +43,7 @@ const ResultListItem = ({
           <UiButton
             hPadding='0.5rem'
             title={
-              <S.IconRotator rotate={isDetailsOpen}>
+              <S.IconRotator $rotate={isDetailsOpen}>
                 <UiIcon
                   name={isLoading ? 'loader' : 'arrowDown'}
                   width='1rem'
