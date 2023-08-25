@@ -27,6 +27,14 @@ const ResultListItem = ({
 
   const { mutate: getUserDetails, data, isLoading } = useUserDetails()
 
+  const handleOnClick = () => {
+    if (!data) {
+      getUserDetails(login)
+    } else {
+      toggleDetailsOpen()
+    }
+  }
+
   React.useEffect(() => {
     if (data && !isLoading) toggleDetailsOpen()
   }, [data, isLoading])
@@ -43,6 +51,7 @@ const ResultListItem = ({
         </UiTooltip>
         <UiTooltip tooltipText='Show details'>
           <UiButton
+            testid={`${TestID.UserDetailButton}_${id}`}
             hPadding='0.5rem'
             title={
               <S.IconRotator $rotate={isDetailsOpen}>
@@ -52,13 +61,7 @@ const ResultListItem = ({
                 />
               </S.IconRotator>
             }
-            onClick={() => {
-              if (!data) {
-                getUserDetails(login)
-              } else {
-                toggleDetailsOpen()
-              }
-            }}
+            onClick={handleOnClick}
           />
         </UiTooltip>
       </S.ResultListItem>

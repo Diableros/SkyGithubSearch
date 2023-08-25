@@ -7,6 +7,7 @@ type PropsType = {
   hPadding?: string
   fontSize?: string
   onClick?: () => void
+  testid?: string
 }
 
 const UiButton = ({
@@ -16,9 +17,16 @@ const UiButton = ({
   onClick,
   hPadding,
   fontSize,
+  testid,
 }: PropsType) => {
   return (
-    <S.Button fontSize={fontSize} type={type} onClick={onClick} hPadding={hPadding}>
+    <S.Button
+      fontSize={fontSize}
+      type={type}
+      onClick={onClick}
+      hPadding={hPadding}
+      data-testid={testid}
+    >
       {icon}
       <span>{title}</span>
     </S.Button>
