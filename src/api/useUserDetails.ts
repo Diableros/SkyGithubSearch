@@ -10,7 +10,7 @@ const useUserDetails = () => {
     mutationKey: ['user details'],
     mutationFn: (login: string) => {
       try {
-        return api.get(`users/${login}`).json<UserDetails>()
+        return api().get(`users/${login}`).json<UserDetails>()
       } catch (error) {
         const { response } = error as HTTPError
         if (response.status) throw response.status

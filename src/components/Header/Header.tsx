@@ -1,6 +1,7 @@
 import UiIcon from '../UiKit/UiIcon'
 
 import { logotypes } from './constants'
+import { TestID } from '@/enums'
 
 import * as S from './Header.style'
 
@@ -8,7 +9,7 @@ const Header = () => {
   const { img, url } = logotypes.github
 
   return (
-    <S.Header>
+    <S.Header data-testid={TestID.Header}>
       <UiIcon
         name={img}
         width='100px'

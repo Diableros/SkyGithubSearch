@@ -9,6 +9,8 @@ import UiTooltip from '@/components/UiKit/UiTooltip'
 import { User } from '@/api/types'
 import useUserDetails from '@/api/useUserDetails'
 
+import { TestID } from '@/enums'
+
 import * as S from './ResultListItem.style'
 
 type PropsType = {
@@ -25,12 +27,20 @@ const ResultListItem = ({
 
   const { mutate: getUserDetails, data, isLoading } = useUserDetails()
 
+  const handleOnClick = () => {
+    if (!data) {
+      getUserDetails(login)
+    } else {
+      toggleDetailsOpen()
+    }
+  }
+
   React.useEffect(() => {
     if (data && !isLoading) toggleDetailsOpen()
   }, [data, isLoading])
 
   return (
-    <section>
+    <section data-testid={TestID.ResultListItem}>
       <S.ResultListItem key={id}>
         <UiTooltip tooltipText={`Go to ${type.toLowerCase()} page`}>
           <S.UserInfo onClick={() => window.open(html_url, '_blank')}>
@@ -41,6 +51,7 @@ const ResultListItem = ({
         </UiTooltip>
         <UiTooltip tooltipText='Show details'>
           <UiButton
+            testid={`${TestID.UserDetailButton}_${id}`}
             hPadding='0.5rem'
             title={
               <S.IconRotator $rotate={isDetailsOpen}>
@@ -50,13 +61,7 @@ const ResultListItem = ({
                 />
               </S.IconRotator>
             }
-            onClick={() => {
-              if (!data) {
-                getUserDetails(login)
-              } else {
-                toggleDetailsOpen()
-              }
-            }}
+            onClick={handleOnClick}
           />
         </UiTooltip>
       </S.ResultListItem>
