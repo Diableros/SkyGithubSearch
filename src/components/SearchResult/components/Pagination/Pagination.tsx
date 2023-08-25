@@ -37,7 +37,7 @@ const PaginationBar = ({ children }: PropsType) => {
             title={currentPage}
             type='button'
             hPadding='0.5rem'
-            fontSize='0.65rem'
+            fontSize='11px'
           />
         )
       }

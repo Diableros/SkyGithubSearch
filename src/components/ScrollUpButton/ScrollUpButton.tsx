@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import UiIcon from '../UiKit/UiIcon'
 
+import { TestID } from '@/enums'
+
 import * as S from './ScrollUpButton.style'
 
 const ScrollUpButton = () => {
@@ -33,7 +35,11 @@ const ScrollUpButton = () => {
   }, [])
 
   return (
-    <S.ScrollUp onClick={handleUpButton} isShow={isShowUpButton}>
+    <S.ScrollUp
+      data-testid={TestID.ScrollUp}
+      onClick={handleUpButton}
+      isShow={isShowUpButton}
+    >
       <S.IconRotator>
         <UiIcon name='arrowRight' width='2rem' />
       </S.IconRotator>

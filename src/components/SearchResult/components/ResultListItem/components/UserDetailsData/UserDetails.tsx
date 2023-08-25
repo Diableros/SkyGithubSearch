@@ -3,6 +3,7 @@ import * as React from 'react'
 import { dateFormat } from './utils'
 
 import { fieldNames } from './constants'
+import { TestID } from '@/enums'
 
 import * as S from './UserDetails.style'
 
@@ -21,7 +22,13 @@ const UserDetailsData = ({ isOpen, userDetails }: PropsType) => {
   }, [userDetails])
 
   return (
-    <S.DetailsWrapper isOpen={isOpen} openHeight={detailsHeight}>
+    <S.DetailsWrapper
+      isOpen={isOpen}
+      openHeight={detailsHeight}
+      data-testid={`${TestID.UserDetailData}${userDetails?.id || ''}${
+        isOpen ? TestID.UserDetailDataIsOpen : ''
+      }`}
+    >
       <S.MeasuringBlock ref={measuringRef}>
         {userDetails &&
           Object.entries(userDetails).map(([fieldKey, value]) => (

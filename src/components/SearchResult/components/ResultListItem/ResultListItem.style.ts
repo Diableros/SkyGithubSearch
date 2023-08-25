@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 type IconRotatorProps = {
-  rotate: boolean
+  $rotate: boolean
 }
 
 export const ResultListItem = styled.div`
@@ -46,6 +46,6 @@ export const Type = styled.span`
 `
 
 export const IconRotator = styled.div<IconRotatorProps>`
-  transform: rotate(${({ rotate }) => (rotate ? '180deg' : '0')});
+  transform: rotate(${({ $rotate }) => ($rotate ? '180deg' : '0')});
   transition: transform 0.4s;
 `
