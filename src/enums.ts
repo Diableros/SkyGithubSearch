@@ -6,4 +6,5 @@ export const enum TestID {
   UserDetailData = 'detailData_',
   UserDetailDataIsOpen = '_isOpen',
   Header = 'header',
+  SearchButton = 'searchButton'
 }

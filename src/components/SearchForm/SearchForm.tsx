@@ -56,6 +56,7 @@ const SearchForm = () => {
       <S.ButtonsBox>
         <SortByRepos />
         <UiButton
+          testid={TestID.SearchButton}
           title={TEXT.SEARCH_BUTTON_TITLE}
           type='submit'
           icon={<UiIcon name={isFetching ? 'loader' : 'search'} width='18' />}
