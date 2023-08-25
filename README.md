@@ -62,7 +62,7 @@ pnpm test
 
 ### !ВАЖНО! В боевом деплое используется авторизационный токен для предоставления большего количества запросов в минуту.
 
-### При локальном развертывании проекта, для увеличенного количества запросов на поиск, необходимо создать файл .env.local с данными Вашего токена с github в соответствии с .env.expamle (иначе количество запросов будет минимальным: 10 запросов в минуту) (см. [Инструкция по созданию собственного токена доступа к Github API](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens))
+### При локальном развертывании проекта, для увеличенного количества запросов на поиск, необходимо создать файл .env.local с данными Вашего токена с github в соответствии с .env.expamle (иначе количество запросов будет минимальным: 10 запросов в минуту) (см. [Инструкция по созданию собственного токена доступа к Github API](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token))
 
 ---
 
