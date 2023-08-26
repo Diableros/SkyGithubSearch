@@ -65,10 +65,13 @@ export const SelectDropList = styled.div<SelectDropListProps>`
   flex-direction: ${({ dropListShift }) =>
     dropListShift ? 'column-reverse' : 'column'};
 
+  font-size: inherit;
+
   & > div {
     ${buttonGeneral}
 
-    font-size: 0.75rem;
+    font-size: inherit;
+    
     &:first-of-type {
       ${({ dropListShift }) =>
         dropListShift ? 'border-top' : 'border-bottom'}-left-radius: 0;
