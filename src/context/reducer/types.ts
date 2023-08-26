@@ -13,6 +13,10 @@ export type SearchAction =
       payload: PaginationData
     }
   | {
+      type: Action.PageSize
+      payload: SelectOption
+    }
+  | {
       type: Action.Order
       payload: SelectOption
     }

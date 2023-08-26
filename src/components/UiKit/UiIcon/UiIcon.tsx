@@ -10,7 +10,13 @@ type PropsType = {
   onClick?: () => void
 }
 
-const UiIcon = ({ color, width, height, name, onClick }: PropsType) => {
+const UiIcon = ({
+  color = 'inherit',
+  width,
+  height,
+  name,
+  onClick,
+}: PropsType) => {
   const Icon = icons[name]
 
   return (

@@ -17,6 +17,16 @@ export const searhReducer: SearchReducer = (state, action) => {
       }
     }
 
+    case Action.PageSize: {
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          pageSize: Number(action.payload.value),
+        },
+      }
+    }
+
     case Action.Order: {
       return {
         ...state,
