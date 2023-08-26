@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { Pagination } from 'antd'
-import { PaginationProps } from 'antd'
 
 import UiButton from '@/components/UiKit/UiButtonLikeComponents/UiButton'
 import UiIcon from '@/components/UiKit/UiIcon'
-import './Pagination.scss'
 
+// import UiIcon from '@/components/UiKit/UiIcon'
 import { Action, useSearchContext } from '@/context'
+
+import * as S from './Pagination.style'
 
 type PropsType = {
   children: React.ReactNode
@@ -14,7 +14,7 @@ type PropsType = {
 
 const MAX_GITHUB_RESULT = 1000
 
-const PaginationBar = ({ children }: PropsType) => {
+const Pagination = ({ children }: PropsType) => {
   const [
     {
       pagination: { totalCount, currentPage, pageSize },
@@ -22,75 +22,68 @@ const PaginationBar = ({ children }: PropsType) => {
     dispatch,
   ] = useSearchContext()
 
-  const onChange: PaginationProps['onChange'] = (currentPage, pageSize) => {
-    dispatch({
-      type: Action.Pagination,
-      payload: { totalCount, currentPage, pageSize },
-    })
-  }
+  const pagination = () => {
+    const fullPageButtons = Array.from({
+      length: Math.ceil(
+        totalCount < MAX_GITHUB_RESULT
+          ? totalCount
+          : MAX_GITHUB_RESULT / pageSize,
+      ),
+    }).map((_, index) => index + 1)
 
-  const itemRender: PaginationProps['itemRender'] = (currentPage, type) => {
-    switch (type) {
-      case 'page': {
-        return (
-          <UiButton
-            title={currentPage}
-            type='button'
-            hPadding='0.5rem'
-            fontSize='11px'
-          />
-        )
-      }
-      case 'prev': {
-        return (
-          <UiButton
-            title={<UiIcon name='arrowLeft' width='16px' />}
-            type='button'
-            hPadding='4px'
-          />
-        )
-      }
-      case 'next': {
-        return (
-          <UiButton
-            title={<UiIcon name='arrowRight' width='16px' />}
-            type='button'
-            hPadding='4px'
-          />
-        )
-      }
+    const filteredPageButtons = fullPageButtons.filter(
+      (pageNumber, _, array) =>
+        pageNumber === 1 ||
+        pageNumber === array.length ||
+        (pageNumber >= currentPage - 3 && pageNumber <= currentPage + 3),
+    )
 
-      default:
-        return null
+    const onPageClick = (settedPage: number) => {
+      if (settedPage < 0 && settedPage > fullPageButtons.length) return
+
+      dispatch({
+        type: Action.Pagination,
+        payload: { totalCount, currentPage: settedPage, pageSize },
+      })
     }
+
+    return (
+      <S.PaginationWrapper>
+        <UiButton
+          title={<UiIcon name='arrowLeft' width='1rem' />}
+          hPadding='0.5rem'
+          onClick={() => onPageClick(currentPage - 1)}
+          disabled={currentPage === 1}
+        />
+
+        {filteredPageButtons.map(pageNumber => (
+          <UiButton
+            key={pageNumber}
+            title={pageNumber}
+            hPadding='0.5rem'
+            onClick={() => onPageClick(pageNumber)}
+            isActive={pageNumber === currentPage}
+            fontSize='0.75rem'
+          />
+        ))}
+
+        <UiButton
+          title={<UiIcon name='arrowRight' width='1rem' />}
+          hPadding='0.5rem'
+          onClick={() => onPageClick(currentPage + 1)}
+          disabled={currentPage === fullPageButtons.length}
+        />
+      </S.PaginationWrapper>
+    )
   }
 
   return (
     <>
-      <Pagination
-        className='pagination'
-        size='small'
-        total={totalCount < MAX_GITHUB_RESULT ? totalCount : MAX_GITHUB_RESULT}
-        current={currentPage}
-        pageSize={pageSize}
-        onChange={onChange}
-        itemRender={itemRender}
-        showSizeChanger
-      />
-
+      {pagination()}
       {children}
-      <Pagination
-        className='pagination'
-        size='small'
-        total={totalCount < MAX_GITHUB_RESULT ? totalCount : MAX_GITHUB_RESULT}
-        current={currentPage}
-        pageSize={pageSize}
-        onChange={onChange}
-        itemRender={itemRender}
-        showSizeChanger
-      />
+      {pagination()}
     </>
   )
 }
 
-export default PaginationBar
+export default Pagination
