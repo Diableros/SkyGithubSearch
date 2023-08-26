@@ -13,6 +13,7 @@ type PropsType = {
   selectedValue?: SelectOption
   position?: Position
   width?: string
+  $fontSize?: string
 }
 
 const UiSelectButton = ({
@@ -21,6 +22,7 @@ const UiSelectButton = ({
   selectOptions,
   position = Position.Top,
   width = '5rem',
+  $fontSize,
 }: PropsType) => {
   const dropListRef = React.useRef<HTMLDivElement | null>(null)
 
@@ -68,7 +70,7 @@ const UiSelectButton = ({
   }
 
   return (
-    <S.SelectBox>
+    <S.SelectBox $fontSize={$fontSize}>
       <S.SelectedValue width={width}>{selectedOption.title}</S.SelectedValue>
       <S.SelectDropButton
         type='button'
