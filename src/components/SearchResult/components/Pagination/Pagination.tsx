@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import UiButton from '@/components/UiKit/UiButtonLikeComponents/UiButton'
 import UiSelectButton from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton'
+import { Position } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/enums'
 import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 import UiIcon from '@/components/UiKit/UiIcon'
 
@@ -27,6 +28,7 @@ const MAX_GITHUB_RESULT = 1000
 const paginationBar = (
   { totalCount, currentPage, pageSize }: PaginationData,
   dispatch: React.Dispatch<SearchAction>,
+  position: Position,
 ) => {
   const fullPageButtons = Array.from({
     length: Math.ceil(
@@ -97,6 +99,7 @@ const paginationBar = (
           onChange={onPageSizeChange}
           width='4rem'
           $fontSize='0.75rem'
+          position={position}
         />
       </S.PaginationWrapper>
     </>
@@ -108,9 +111,9 @@ const Pagination = ({ children }: PropsType) => {
 
   return (
     <>
-      {paginationBar(pagination, dispatch)}
+      {paginationBar(pagination, dispatch, Position.Top)}
       {children}
-      {paginationBar(pagination, dispatch)}
+      {paginationBar(pagination, dispatch, Position.Bottom)}
     </>
   )
 }

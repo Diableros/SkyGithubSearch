@@ -80,8 +80,6 @@ pnpm test
 
 ### - Emotion v11
 
-### - Ant Design v5
-
 ### - React: Context + useReducer (as state-manager)
 
 ---
