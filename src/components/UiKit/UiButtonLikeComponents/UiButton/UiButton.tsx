@@ -8,6 +8,8 @@ type PropsType = {
   fontSize?: string
   onClick?: () => void
   testid?: string
+  isActive?: boolean
+  disabled?: boolean
 }
 
 const UiButton = ({
@@ -18,6 +20,8 @@ const UiButton = ({
   hPadding,
   fontSize,
   testid,
+  isActive = false,
+  disabled = false,
 }: PropsType) => {
   return (
     <S.Button
@@ -26,6 +30,8 @@ const UiButton = ({
       onClick={onClick}
       hPadding={hPadding}
       data-testid={testid}
+      isActive={isActive}
+      disabled={disabled}
     >
       {icon}
       <span>{title}</span>

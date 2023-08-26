@@ -1,12 +1,22 @@
 import * as React from 'react'
-import { Pagination } from 'antd'
-import { PaginationProps } from 'antd'
 
 import UiButton from '@/components/UiKit/UiButtonLikeComponents/UiButton'
+import UiSelectButton from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton'
+import { SelectOption } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 import UiIcon from '@/components/UiKit/UiIcon'
-import './Pagination.scss'
 
-import { Action, useSearchContext } from '@/context'
+// import UiIcon from '@/components/UiKit/UiIcon'
+import {
+  Action,
+  PaginationData,
+  SearchAction,
+  useSearchContext,
+} from '@/context'
+import { filterPageButtons } from './utils'
+
+import { pageSizeSelectorOptions } from './constants'
+
+import * as S from './Pagination.style'
 
 type PropsType = {
   children: React.ReactNode
@@ -14,83 +24,95 @@ type PropsType = {
 
 const MAX_GITHUB_RESULT = 1000
 
-const PaginationBar = ({ children }: PropsType) => {
-  const [
-    {
-      pagination: { totalCount, currentPage, pageSize },
-    },
-    dispatch,
-  ] = useSearchContext()
+const paginationBar = (
+  { totalCount, currentPage, pageSize }: PaginationData,
+  dispatch: React.Dispatch<SearchAction>,
+) => {
+  const fullPageButtons = Array.from({
+    length: Math.ceil(
+      (totalCount < MAX_GITHUB_RESULT ? totalCount : MAX_GITHUB_RESULT) /
+        pageSize,
+    ),
+  }).map((_, index) => index + 1)
 
-  const onChange: PaginationProps['onChange'] = (currentPage, pageSize) => {
+  const filteredPageButtons = filterPageButtons(fullPageButtons, currentPage)
+
+  const onPageClick = (settedPage: number) => {
+    if (settedPage < 0 && settedPage > fullPageButtons.length) return
+
     dispatch({
       type: Action.Pagination,
-      payload: { totalCount, currentPage, pageSize },
+      payload: { totalCount, currentPage: settedPage, pageSize },
     })
   }
 
-  const itemRender: PaginationProps['itemRender'] = (currentPage, type) => {
-    switch (type) {
-      case 'page': {
-        return (
-          <UiButton
-            title={currentPage}
-            type='button'
-            hPadding='0.5rem'
-            fontSize='11px'
-          />
-        )
-      }
-      case 'prev': {
-        return (
-          <UiButton
-            title={<UiIcon name='arrowLeft' width='16px' />}
-            type='button'
-            hPadding='4px'
-          />
-        )
-      }
-      case 'next': {
-        return (
-          <UiButton
-            title={<UiIcon name='arrowRight' width='16px' />}
-            type='button'
-            hPadding='4px'
-          />
-        )
-      }
+  const onPageSizeChange = ({ value }: SelectOption) => {
+    const newCurrentPage = Math.round(
+      ((currentPage - 1) * pageSize) / Number(value) + 1,
+    )
 
-      default:
-        return null
-    }
+    dispatch({
+      type: Action.Pagination,
+      payload: {
+        currentPage: newCurrentPage,
+        pageSize: Number(value),
+        totalCount,
+      },
+    })
   }
 
   return (
     <>
-      <Pagination
-        className='pagination'
-        size='small'
-        total={totalCount < MAX_GITHUB_RESULT ? totalCount : MAX_GITHUB_RESULT}
-        current={currentPage}
-        pageSize={pageSize}
-        onChange={onChange}
-        itemRender={itemRender}
-        showSizeChanger
-      />
+      <S.PaginationWrapper>
+        <UiButton
+          title={<UiIcon name='arrowLeft' width='1rem' />}
+          hPadding='0.5rem'
+          onClick={() => onPageClick(currentPage - 1)}
+          disabled={currentPage === 1}
+        />
 
-      {children}
-      <Pagination
-        className='pagination'
-        size='small'
-        total={totalCount < MAX_GITHUB_RESULT ? totalCount : MAX_GITHUB_RESULT}
-        current={currentPage}
-        pageSize={pageSize}
-        onChange={onChange}
-        itemRender={itemRender}
-        showSizeChanger
-      />
+        {filteredPageButtons.map(pageNumber => (
+          <UiButton
+            key={pageNumber}
+            title={pageNumber}
+            hPadding='0.5rem'
+            onClick={() => onPageClick(pageNumber)}
+            isActive={pageNumber === currentPage}
+            fontSize='0.75rem'
+          />
+        ))}
+
+        <UiButton
+          title={<UiIcon name='arrowRight' width='1rem' />}
+          hPadding='0.5rem'
+          onClick={() => onPageClick(currentPage + 1)}
+          disabled={currentPage === fullPageButtons.length}
+        />
+
+        <UiSelectButton
+          selectOptions={pageSizeSelectorOptions}
+          selectedValue={pageSizeSelectorOptions.find(
+            option => option.value === String(pageSize),
+          )}
+          onChange={onPageSizeChange}
+          width='4rem'
+          $fontSize='0.75rem'
+        />
+      </S.PaginationWrapper>
     </>
   )
 }
 
-export default PaginationBar
+const Pagination = ({ children }: PropsType) => {
+  const [{ pagination }, dispatch] = useSearchContext()
+
+  return (
+    <>
+      {paginationBar(pagination, dispatch)}
+      {children}
+      {paginationBar(pagination, dispatch)}
+    </>
+  )
+}
+
+export default Pagination

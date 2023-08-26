@@ -11,9 +11,14 @@ type SelectedValueProps = {
   width: string
 }
 
-export const SelectBox = styled.div`
+type SelectBoxProps = {
+  $fontSize?: string
+}
+
+export const SelectBox = styled.div<SelectBoxProps>`
   position: relative;
   display: flex;
+  ${({ $fontSize }) => ($fontSize ? `font-size: ${$fontSize};` : '')}
 `
 
 export const SelectedValue = styled.div<SelectedValueProps>`
@@ -25,6 +30,8 @@ export const SelectedValue = styled.div<SelectedValueProps>`
   width: ${({ width }) => width};
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
+  font-size: inherit;
 
   &:hover,
   &:active {
@@ -61,6 +68,7 @@ export const SelectDropList = styled.div<SelectDropListProps>`
   & > div {
     ${buttonGeneral}
 
+    font-size: 0.75rem;
     &:first-of-type {
       ${({ dropListShift }) =>
         dropListShift ? 'border-top' : 'border-bottom'}-left-radius: 0;
