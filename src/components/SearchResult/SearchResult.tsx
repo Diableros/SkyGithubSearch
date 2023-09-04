@@ -27,6 +27,7 @@ const SearchResult = () => {
     </Pagination>
   )
 
+  // TODO add instead of "Searching..." pagination with sceleton of result
   const searchStatus = (
     <S.CoverContent>
       <S.CoverTitle>
