@@ -1,4 +1,4 @@
-import { ADDITIONAL_PAGE_BUTTONS } from './constants'
+import { ADDITIONAL_PAGE_BUTTONS } from './components/PaginationBar/constants'
 
 export const filterPageButtons = (
   buttonsArray: number[],

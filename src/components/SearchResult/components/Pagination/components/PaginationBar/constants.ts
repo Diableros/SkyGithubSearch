@@ -1,5 +1,7 @@
 import { SelectOptions } from '@/components/UiKit/UiButtonLikeComponents/UiSelectButton/types'
 
+export const MAX_GITHUB_RESULT = 1000
+
 export const ADDITIONAL_PAGE_BUTTONS = 3
 
 export const pageSizeSelectorOptions: SelectOptions = [
