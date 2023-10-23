@@ -27,7 +27,7 @@ const generalSkeletonCSS: CssThemed = ({ theme }) => css`
 
 export const SkeletonItem = styled.div`
   position: relative;
-  width: 543px;
+  width: 542px;
 
   display: flex;
   justify-content: space-between;
