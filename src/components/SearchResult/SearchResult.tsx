@@ -1,5 +1,6 @@
 import Pagination from './components/Pagination'
 import ResultList from './components/ResultList'
+import Skeleton from './components/Skeleton/Skeleton.tsx'
 import UiIcon from '../UiKit/UiIcon/UiIcon.tsx'
 
 import { useSearchContext } from '@/context/searchContext.ts'
@@ -9,7 +10,12 @@ import useSearchQuery from '@/api/useSearchQuery.ts'
 import * as S from './SearchResult.style'
 
 const SearchResult = () => {
-  const [{ isFirstSearch }] = useSearchContext()
+  const [
+    {
+      isFirstSearch,
+      pagination: { pageSize },
+    },
+  ] = useSearchContext()
   const { data, error, isFetching } = useSearchQuery()
 
   const beforeSearchContent = (
@@ -22,7 +28,11 @@ const SearchResult = () => {
   const searchResultContent = (
     <Pagination>
       <S.SearchResultContent>
-        <ResultList resultData={data?.items || []} />
+        {data ? (
+          <ResultList resultData={data.items} />
+        ) : (
+          <Skeleton quantity={pageSize} />
+        )}
       </S.SearchResultContent>
     </Pagination>
   )
@@ -30,14 +40,22 @@ const SearchResult = () => {
   // TODO add instead of "Searching..." pagination with sceleton of result
   const searchStatus = (
     <S.CoverContent>
-      <S.CoverTitle>
-        {isFetching ? 'Searching...' : 'No matches found...'}
-      </S.CoverTitle>
-      <UiIcon
-        name={isFetching ? 'search' : 'sadFace'}
-        width='10rem'
-        color='inherit'
-      />
+      {isFetching ? (
+        <Pagination>
+          <S.SearchResultContent>
+            <Skeleton quantity={pageSize} />
+          </S.SearchResultContent>
+        </Pagination>
+      ) : (
+        <S.CoverTitle>
+          {'No matches found...'}
+          <UiIcon
+            name={isFetching ? 'search' : 'sadFace'}
+            width='10rem'
+            color='inherit'
+          />
+        </S.CoverTitle>
+      )}
     </S.CoverContent>
   )
 
